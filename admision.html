@@ -4,66 +4,51 @@
     <meta charset="UTF-8">
     <title>Módulo de Admisión</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8fafc;
-            padding: 40px 20px;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 450px;
-            margin: 0 auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
-            border-top: 5px solid #8b0000;
-        }
-        h2 { color: #8b0000; margin-top: 0; font-size: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            font-size: 14px;
-        }
-        button {
-            background: #8b0000;
-            color: white;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 12px;
-        }
-        button:hover { background: #6b0000; }
-        .info {
-            background: #fef2f2;
-            color: #991b1b;
-            padding: 10px;
-            font-size: 13px;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            font-weight: 600;
-            border: 1px solid #fecaca;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
+        .header { background: #8b0000; color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; align-items: center; }
+        .container { background: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .filters { display: flex; gap: 10px; margin-bottom: 15px; }
+        select, input, button { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
+        th { background: #f1f5f9; color: #475569; }
+        .badge { padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .approved { background: #dcfce7; color: #166534; }
+        .pending { background: #fef9c3; color: #854d0e; }
+        .card { background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 6px; margin-top: 15px; }
+        .btn-main { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Panel de Admisión y Postulantes</h2>
-        <div class="info"> Vacantes en 3.º Sec: 8 / 25 disponibles</div>
-        <select>
-            <option>Examen de Admisión</option>
-            <option>Traslado Externo</option>
-        </select>
-        <input type="text" placeholder="DNI del Postulante">
-        <input type="text" placeholder="Nombres y Apellidos">
-        <input type="number" placeholder="Puntaje de Examen (0-20)">
-        <button onclick="alert('Postulante Registrado')">Registrar Postulación</button>
+    <div class="header">
+        <strong>SISTEMA ACADÉMICO - SECUNDARIA | Módulo de Admisión</strong>
+        <span>Admin: Juan Pérez</span>
+    </div>
+    <div class="container">
+        <div class="filters">
+            <select><option>Año 2026</option></select>
+            <select><option>Estado (Todos)</option></select>
+            <select><option>Grado (1° a 5° Sec)</option></select>
+            <button class="btn-main">+ Nueva Solicitud</button>
+        </div>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Postulante</th><th>Grado</th><th>Tipo</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>101</td><td>Carlos Mendoza</td><td>1° Sec.</td><td>NUEVO</td><td>10/01/2026</td><td><span class="badge pending">PENDIENTE</span></td><td><button>Evaluar</button></td></tr>
+                <tr><td>102</td><td>Ana Gómez</td><td>3° Sec.</td><td>TRASLADO</td><td>11/01/2026</td><td><span class="badge pending">EN_EVALUACION</span></td><td><button>Ver Ficha</button></td></tr>
+                <tr><td>103</td><td>Luis Paredes</td><td>5° Sec.</td><td>NUEVO</td><td>12/01/2026</td><td><span class="badge approved">APROBADO</span></td><td><button>Matricular</button></td></tr>
+            </tbody>
+        </table>
+        
+        <div class="card">
+            <h3>DETALLE DE SOLICITUD #101</h3>
+            <p><strong>Postulante:</strong> Carlos Mendoza | <strong>DNI:</strong> 74839201 | <strong>Colegio:</strong> P.S. San José</p>
+            <p><strong>Examen de Admisión:</strong> Fecha: 20/01/2026 | Puntaje: <strong>14.5 / 11.00</strong> | Resultado: <span class="badge approved">APROBADO</span></p>
+            <button class="btn-main">Guardar Puntaje</button>
+            <button>Actualizar Solicitud</button>
+        </div>
     </div>
 </body>
 </html>
