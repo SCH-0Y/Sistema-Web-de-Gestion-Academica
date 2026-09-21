@@ -4,15 +4,40 @@
     <meta charset="UTF-8">
     <title>Registro de Calificaciones</title>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
-        .box { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; border: 1px solid #ccc; }
-        h2 { color: #8b0000; }
-        select, button, input { padding: 8px; margin: 5px 0; box-sizing: border-box; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        th { background: #8b0000; color: white; }
-        button { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
-        .badge { background: #d4edda; color: #155724; padding: 4px 8px; font-size: 12px; border-radius: 4px; font-weight: bold; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
+            padding: 40px 20px;
+            margin: 0;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 520px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        h2 { color: #0f172a; margin-top: 0; }
+        p { color: #475569; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: center; font-size: 14px; }
+        th { background: #4f46e5; color: white; border-radius: 4px; }
+        input[type="number"] { width: 50px; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; text-align: center; }
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .badge { background: #dcfce7; color: #166534; padding: 4px 8px; font-size: 12px; border-radius: 6px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -25,20 +50,20 @@
                     <th>Alumno</th>
                     <th>Nota 1</th>
                     <th>Examen</th>
-                    <th>Promedio</th>
+                    <th>Promed.</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Gómez, Carlos</td>
-                    <td><input type="number" value="16" style="width: 50px;"></td>
-                    <td><input type="number" value="14" style="width: 50px;"></td>
+                    <td style="text-align: left;">Gómez, Carlos</td>
+                    <td><input type="number" value="16"></td>
+                    <td><input type="number" value="14"></td>
                     <td><strong>15.0</strong></td>
                 </tr>
                 <tr>
-                    <td>Pérez, Juan</td>
-                    <td><input type="number" value="18" style="width: 50px;"></td>
-                    <td><input type="number" value="17" style="width: 50px;"></td>
+                    <td style="text-align: left;">Pérez, Juan</td>
+                    <td><input type="number" value="18"></td>
+                    <td><input type="number" value="17"></td>
                     <td><strong>17.5</strong></td>
                 </tr>
             </tbody>
