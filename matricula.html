@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Matrícula</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: 0 auto; border: 1px solid #ccc; }
+        h2 { color: #8b0000; }
+        input, select, button { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+        button { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .alert { background: #d4edda; color: #155724; padding: 8px; font-size: 13px; margin-bottom: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Ficha de Matrícula 2026</h2>
+        <div class="alert">✓ Validado: Apoderado Sin Deudas (RN-01)</div>
+        <input type="text" placeholder="DNI del Alumno / Postulante">
+        <select>
+            <option>3.º de Secundaria - Sección "A"</option>
+            <option>3.º de Secundaria - Sección "B"</option>
+        </select>
+        <div style="font-size: 13px; margin: 5px 0; color: #555;">Aforo Sección A: 22 / 25 Ocupados (RN-03)</div>
+        <button onclick="alert('Matrícula Confirmada')">Confirmar Matrícula</button>
+    </div>
+</body>
+</html>
