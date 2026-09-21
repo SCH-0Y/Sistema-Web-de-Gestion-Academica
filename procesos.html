@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Convivencia y Justificaciones</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
+        .header { background: #8b0000; color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; }
+        .container { background: white; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0; }
+        .box { background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+        input, select, textarea, button { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #e2e8f0; padding: 8px; text-align: left; font-size: 13px; }
+        th { background: #1e293b; color: white; }
+        .btn-main { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <strong>SISTEMA ACADÉMICO | Convivencia y Asistencia</strong>
+        <span>Docente: María López</span>
+    </div>
+    <div class="container">
+        <div class="box">
+            <h3>REGISTRO DE INCIDENCIA DISCIPLINARIA</h3>
+            <input type="text" value="Alumno: Lucia Castro (4° Sec - A)">
+            <label>Categoría:</label>
+            <select><option>Incumplimiento de Reglamento</option></select>
+            <textarea rows="2" placeholder="Descripción de la falta...">Uso no autorizado de dispositivos electrónicos durante la sesión de clase.</textarea>
+            <button class="btn-main">Registrar Incidencia</button>
+        </div>
+
+        <h3>SOLICITUDES DE JUSTIFICACIÓN DE ASISTENCIA</h3>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Alumno</th><th>Fecha Clase</th><th>Motivo</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>J-88</td><td>Lucia Castro</td><td>18/09/2026</td><td>Cita Médica Essalud</td><td><strong>APROBADO</strong></td></tr>
+                <tr><td>J-89</td><td>Pedro Aguilar</td><td>19/09/2026</td><td>Motivos Familiares</td><td><strong>PENDIENTE</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
