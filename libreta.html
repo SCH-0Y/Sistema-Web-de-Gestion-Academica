@@ -2,73 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Consulta de Libreta de Notas</title>
+    <title>Portal Financiero Apoderado</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
-            padding: 40px 20px;
-            margin: 0;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            max-width: 520px;
-            margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        h2 { color: #0f172a; margin-top: 0; }
-        .info-student { background: #f1f5f9; padding: 12px; border-radius: 8px; font-size: 13px; color: #334155; margin-bottom: 15px; line-height: 1.5; }
-        .status-ok { color: #16a34a; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 14px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
+        .header { background: #8b0000; color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; }
+        .container { background: white; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0; }
+        .status-card { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 12px; border-radius: 6px; font-weight: bold; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
         th { background: #1e293b; color: white; }
-        button {
-            background: #4f46e5;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-            border-radius: 8px;
-        }
+        .paid { color: #166534; font-weight: bold; }
+        .pending { color: #991b1b; font-weight: bold; }
+        .btn-main { background: #8b0000; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Libreta de Notas Digital</h2>
-        <div class="info-student">
-            <strong>Alumno:</strong> Pérez Gómez, Juan<br>
-            <strong>Grado/Sección:</strong> 3.º de Secundaria "A"<br>
-            <strong>Estado de Cuenta:</strong> <span class="status-ok">Solvente (RN-04)</span>
+    <div class="header">
+        <strong>SISTEMA ACADÉMICO | Portal del Apoderado</strong>
+        <span>Apoderado: Roberto Gómez</span>
+    </div>
+    <div class="container">
+        <div class="status-card">
+            Estudiante: Ana Gómez (3° Secundaria) | Status Financiero: AL DÍA / SIN DEUDA PENDIENTE
         </div>
+        <h3>CRONOGRAMA DE PAGO DE PENSIONES</h3>
         <table>
             <thead>
-                <tr>
-                    <th>Curso</th>
-                    <th>Bimestre I</th>
-                    <th>% Asistencia</th>
-                </tr>
+                <tr><th>Concepto</th><th>Monto Base</th><th>Vencimiento</th><th>Monto Pagado</th><th>Estado</th><th>Acción</th></tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Matemáticas</td>
-                    <td>17.5</td>
-                    <td>98%</td>
-                </tr>
-                <tr>
-                    <td>Comunicación</td>
-                    <td>16.0</td>
-                    <td>100%</td>
-                </tr>
+                <tr><td>Cuota Ingreso 2026</td><td>S/ 500.00</td><td>15/01/2026</td><td>S/ 500.00</td><td class="paid">PAGADO</td><td><button>Ver Recibo</button></td></tr>
+                <tr><td>Pensión Marzo</td><td>S/ 380.00</td><td>31/03/2026</td><td>S/ 380.00</td><td class="paid">PAGADO</td><td><button>Ver Recibo</button></td></tr>
+                <tr><td>Pensión Abril</td><td>S/ 380.00</td><td>30/04/2026</td><td>S/ 180.00</td><td>PARCIAL</td><td><button class="btn-main">Pagar Saldo</button></td></tr>
+                <tr><td>Pensión Mayo</td><td>S/ 380.00</td><td>31/05/2026</td><td>S/ 0.00</td><td class="pending">VENCIDO</td><td><button class="btn-main">Pagar Cuota</button></td></tr>
             </tbody>
         </table>
-        <button onclick="alert('Descargando Libreta en PDF...')">Descargar Libreta (PDF)</button>
     </div>
 </body>
 </html>
