@@ -6,60 +6,63 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
+            background: #f8fafc;
             padding: 40px 20px;
             margin: 0;
-            min-height: 100vh;
             box-sizing: border-box;
         }
         .box {
             background: white;
             padding: 30px;
-            border-radius: 16px;
-            max-width: 420px;
+            border-radius: 10px;
+            max-width: 450px;
             margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #8b0000;
         }
-        h2 { color: #0f172a; margin-top: 0; }
+        h2 { color: #8b0000; margin-top: 0; font-size: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
         input, select, button {
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             margin: 8px 0;
             box-sizing: border-box;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #cbd5e1;
             font-size: 14px;
         }
         button {
-            background: #4f46e5;
+            background: #8b0000;
             color: white;
             border: none;
             font-weight: bold;
             cursor: pointer;
             margin-top: 12px;
         }
+        button:hover { background: #6b0000; }
         .alert {
-            background: #dcfce7;
+            background: #f0fdf4;
             color: #166534;
             padding: 10px;
             font-size: 13px;
             margin-bottom: 12px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
+            border: 1px solid #bbf7d0;
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <h2>Ficha de Matrícula 2026</h2>
-        <div class="alert">✓ Validado: Apoderado Sin Deudas (RN-01)</div>
-        <input type="text" placeholder="DNI del Alumno / Postulante">
+        <h2>Formulario de Matrícula Escolar 2026</h2>
+        <div class="alert">✓ Validado: Apoderado Sin Deudas Pendientes (RN-01)</div>
+        <input type="text" placeholder="DNI del Alumno / Postulante Aprobado">
         <select>
             <option>3.º de Secundaria - Sección "A"</option>
             <option>3.º de Secundaria - Sección "B"</option>
         </select>
-        <div style="font-size: 13px; margin: 8px 0; color: #64748b; font-weight: 500;">Aforo Sección A: 22 / 25 Ocupados (RN-03)</div>
-        <button onclick="alert('Matrícula Confirmada')">Confirmar Matrícula</button>
+        <div style="font-size: 13px; margin: 8px 0; color: #475569; font-weight: 500;">Aforo Sección A: 22 / 25 Ocupados (RN-03)</div>
+        <button onclick="alert('Matrícula Confirmada')">Confirmar y Emitir Matrícula</button>
     </div>
 </body>
 </html>
