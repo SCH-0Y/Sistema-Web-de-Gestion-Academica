@@ -2,73 +2,43 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro de Calificaciones</title>
+    <title>Portal Docente</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
-            padding: 40px 20px;
-            margin: 0;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            max-width: 520px;
-            margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        h2 { color: #0f172a; margin-top: 0; }
-        p { color: #475569; font-size: 14px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: center; font-size: 14px; }
-        th { background: #4f46e5; color: white; border-radius: 4px; }
-        input[type="number"] { width: 50px; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; text-align: center; }
-        button {
-            background: #4f46e5;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-            border-radius: 8px;
-        }
-        .badge { background: #dcfce7; color: #166534; padding: 4px 8px; font-size: 12px; border-radius: 6px; font-weight: bold; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
+        .header { background: #8b0000; color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; }
+        .container { background: white; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0; }
+        .filters { display: flex; gap: 15px; background: #f1f5f9; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: center; font-size: 13px; }
+        th { background: #1e293b; color: white; }
+        input[type="number"] { width: 60px; text-align: center; padding: 4px; }
+        .btn-main { background: #8b0000; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Registro de Notas - Bimestre I</h2>
-        <p><strong>Curso:</strong> Matemáticas | <strong>Acta:</strong> <span class="badge">ABIERTA (RN-02)</span></p>
+    <div class="header">
+        <strong>SISTEMA ACADÉMICO | Portal Docente</strong>
+        <span>Docente: María López</span>
+    </div>
+    <div class="container">
+        <div class="filters">
+            <label>Sección: <strong>3° Sec - B</strong></label>
+            <label>Curso: <strong>Matemática</strong></label>
+            <label>Periodo: <strong>Bimestre I (2026)</strong></label>
+        </div>
         <table>
             <thead>
-                <tr>
-                    <th>Alumno</th>
-                    <th>Nota 1</th>
-                    <th>Examen</th>
-                    <th>Promed.</th>
-                </tr>
+                <tr><th>N°</th><th>Alumno</th><th>Cód. Mat.</th><th>Nota (0-20)</th><th>Estado</th><th>Fecha Reg.</th></tr>
             </thead>
             <tbody>
-                <tr>
-                    <td style="text-align: left;">Gómez, Carlos</td>
-                    <td><input type="number" value="16"></td>
-                    <td><input type="number" value="14"></td>
-                    <td><strong>15.0</strong></td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">Pérez, Juan</td>
-                    <td><input type="number" value="18"></td>
-                    <td><input type="number" value="17"></td>
-                    <td><strong>17.5</strong></td>
-                </tr>
+                <tr><td>01</td><td style="text-align:left;">Aguilar Rios, Pedro</td><td>SEC-20261</td><td><input type="number" value="16.5"></td><td>Aprobado</td><td>20/05/2026</td></tr>
+                <tr><td>02</td><td style="text-align:left;">Castro Fernández, Lucia</td><td>SEC-20262</td><td><input type="number" value="09.0"></td><td>Desaprobado</td><td>20/05/2026</td></tr>
+                <tr><td>03</td><td style="text-align:left;">Mendoza Silva, Carlos</td><td>SEC-20263</td><td><input type="number" value=""></td><td>Pendiente</td><td>--</td></tr>
             </tbody>
         </table>
-        <button onclick="alert('Notas Guardadas')">Guardar Calificaciones</button>
+        <br>
+        <button class="btn-main">Guardar Cambios</button>
+        <button class="btn-main" style="background:#1e293b;">Publicar Notas</button>
     </div>
 </body>
 </html>
