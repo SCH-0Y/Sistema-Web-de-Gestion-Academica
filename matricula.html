@@ -4,12 +4,49 @@
     <meta charset="UTF-8">
     <title>Registro de Matrícula</title>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
-        .box { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: 0 auto; border: 1px solid #ccc; }
-        h2 { color: #8b0000; }
-        input, select, button { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
-        button { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
-        .alert { background: #d4edda; color: #155724; padding: 8px; font-size: 13px; margin-bottom: 10px; border-radius: 4px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
+            padding: 40px 20px;
+            margin: 0;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 420px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        h2 { color: #0f172a; margin-top: 0; }
+        input, select, button {
+            width: 100%;
+            padding: 11px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            font-size: 14px;
+        }
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        .alert {
+            background: #dcfce7;
+            color: #166534;
+            padding: 10px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -21,7 +58,7 @@
             <option>3.º de Secundaria - Sección "A"</option>
             <option>3.º de Secundaria - Sección "B"</option>
         </select>
-        <div style="font-size: 13px; margin: 5px 0; color: #555;">Aforo Sección A: 22 / 25 Ocupados (RN-03)</div>
+        <div style="font-size: 13px; margin: 8px 0; color: #64748b; font-weight: 500;">Aforo Sección A: 22 / 25 Ocupados (RN-03)</div>
         <button onclick="alert('Matrícula Confirmada')">Confirmar Matrícula</button>
     </div>
 </body>
