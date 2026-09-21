@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Calificaciones</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; border: 1px solid #ccc; }
+        h2 { color: #8b0000; }
+        select, button, input { padding: 8px; margin: 5px 0; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #8b0000; color: white; }
+        button { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+        .badge { background: #d4edda; color: #155724; padding: 4px 8px; font-size: 12px; border-radius: 4px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Registro de Notas - Bimestre I</h2>
+        <p><strong>Curso:</strong> Matemáticas | <strong>Acta:</strong> <span class="badge">ABIERTA (RN-02)</span></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Alumno</th>
+                    <th>Nota 1</th>
+                    <th>Examen</th>
+                    <th>Promedio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gómez, Carlos</td>
+                    <td><input type="number" value="16" style="width: 50px;"></td>
+                    <td><input type="number" value="14" style="width: 50px;"></td>
+                    <td><strong>15.0</strong></td>
+                </tr>
+                <tr>
+                    <td>Pérez, Juan</td>
+                    <td><input type="number" value="18" style="width: 50px;"></td>
+                    <td><input type="number" value="17" style="width: 50px;"></td>
+                    <td><strong>17.5</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="alert('Notas Guardadas')">Guardar Calificaciones</button>
+    </div>
+</body>
+</html>
