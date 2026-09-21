@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Sistema Web de Gestión Académica</title>
     <style>
-        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f1f5f9;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,53 +16,55 @@
         .box {
             background: #ffffff;
             padding: 35px 30px;
-            border-radius: 16px;
-            width: 320px;
+            border-radius: 12px;
+            width: 340px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 6px solid #8b0000;
         }
         h2 {
-            color: #1e293b;
+            color: #8b0000;
             margin-top: 0;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
         }
         p {
-            color: #64748b;
+            color: #475569;
             font-size: 13px;
             margin-bottom: 20px;
+            font-weight: 500;
         }
         input, select, button {
             width: 100%;
-            padding: 12px;
+            padding: 11px;
             margin: 8px 0;
             box-sizing: border-box;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #cbd5e1;
             font-size: 14px;
             outline: none;
         }
         input:focus, select:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            border-color: #8b0000;
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.15);
         }
         button {
-            background: #4f46e5;
+            background: #8b0000;
             color: white;
             border: none;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
-            margin-top: 15px;
+            margin-top: 12px;
         }
         button:hover {
-            background: #4338ca;
+            background: #6b0000;
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <h2>¡Bienvenido!</h2>
+        <h2>Iniciar Sesión</h2>
         <p>Sistema Web de Gestión Académica</p>
         <select>
             <option>Administrador</option>
