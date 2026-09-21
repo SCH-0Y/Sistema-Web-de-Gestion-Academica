@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Módulo de Admisión</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: 0 auto; border: 1px solid #ccc; }
+        h2 { color: #8b0000; }
+        input, select, button { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+        button { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .info { background: #e3f2fd; padding: 8px; font-size: 14px; margin-bottom: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Registro de Admisión</h2>
+        <div class="info">Vacantes en 3.º Sec: 8 / 25</div>
+        <select>
+            <option>Examen de Admisión</option>
+            <option>Traslado Externo</option>
+        </select>
+        <input type="text" placeholder="DNI del Postulante">
+        <input type="text" placeholder="Nombres y Apellidos">
+        <input type="number" placeholder="Puntaje de Examen (0-20)">
+        <button onclick="alert('Postulante Registrado')">Registrar Postulación</button>
+    </div>
+</body>
+</html>  
