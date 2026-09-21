@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Libreta de Notas</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; border: 1px solid #ccc; }
+        h2 { color: #8b0000; }
+        .info-student { background: #e9ecef; padding: 10px; border-radius: 4px; font-size: 14px; margin-bottom: 12px; }
+        .status-ok { color: #28a745; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #333; color: white; }
+        button { background: #8b0000; color: white; border: none; padding: 10px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Libreta de Notas Digital</h2>
+        <div class="info-student">
+            <strong>Alumno:</strong> Pérez Gómez, Juan<br>
+            <strong>Grado/Sección:</strong> 3.º de Secundaria "A"<br>
+            <strong>Estado de Cuenta:</strong> <span class="status-ok">Solvente (RN-04)</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Bimestre I</th>
+                    <th>% Asistencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Matemáticas</td>
+                    <td>17.5</td>
+                    <td>98%</td>
+                </tr>
+                <tr>
+                    <td>Comunicación</td>
+                    <td>16.0</td>
+                    <td>100%</td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="alert('Descargando Libreta en PDF...')">Descargar Libreta (PDF)</button>
+    </div>
+</body>
+</html>
