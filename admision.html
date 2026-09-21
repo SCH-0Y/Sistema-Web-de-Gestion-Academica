@@ -6,53 +6,56 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #686de0 100%);
+            background: #f8fafc;
             padding: 40px 20px;
             margin: 0;
-            min-height: 100vh;
             box-sizing: border-box;
         }
         .box {
             background: white;
             padding: 30px;
-            border-radius: 16px;
-            max-width: 420px;
+            border-radius: 10px;
+            max-width: 450px;
             margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #8b0000;
         }
-        h2 { color: #0f172a; margin-top: 0; }
+        h2 { color: #8b0000; margin-top: 0; font-size: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
         input, select, button {
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             margin: 8px 0;
             box-sizing: border-box;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #cbd5e1;
             font-size: 14px;
         }
         button {
-            background: #4f46e5;
+            background: #8b0000;
             color: white;
             border: none;
             font-weight: bold;
             cursor: pointer;
             margin-top: 12px;
         }
+        button:hover { background: #6b0000; }
         .info {
-            background: #e0e7ff;
-            color: #3730a3;
+            background: #fef2f2;
+            color: #991b1b;
             padding: 10px;
             font-size: 13px;
             margin-bottom: 12px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
+            border: 1px solid #fecaca;
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <h2>Registro de Admisión</h2>
-        <div class="info">⚡ Vacantes en 3.º Sec: 8 / 25</div>
+        <h2>Panel de Admisión y Postulantes</h2>
+        <div class="info"> Vacantes en 3.º Sec: 8 / 25 disponibles</div>
         <select>
             <option>Examen de Admisión</option>
             <option>Traslado Externo</option>
