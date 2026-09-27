@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Apoderado - I.E.P San Jerónimo</title>
+    <title>Portal Estudiante / Apoderado - I.E.P San Jerónimo</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
-        .navbar { background: #1e293b; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .brand-logo { width: 36px; height: 36px; background: #8b0000; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .brand-logo { width: 36px; height: 36px; background: #1d4ed8; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
         .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
         .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { background: #8b0000; color: white; }
+        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; }
         .container { max-width: 900px; margin: 30px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        h2 { color: #8b0000; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
-        .status-card { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 12px; border-radius: 6px; font-weight: bold; margin-bottom: 15px; font-size: 13px; }
+        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        h3 { font-size: 15px; margin: 18px 0 10px; }
+        .status-card { padding: 12px; border-radius: 6px; font-weight: bold; margin-bottom: 15px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .status-card.al-dia { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+        .status-card.moroso { background: #fee2e2; border: 1px solid #fecaca; color: #991b1b; }
+        .btn-demo { background: white; border: 1px solid currentColor; color: inherit; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; }
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
-        th { background: #1e293b; color: white; }
-        .btn-main { background: #8b0000; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
-        .btn-main:hover { background: #6b0000; }
+        th { background: #0f2a4a; color: white; }
+        .btn-main { background: #1d4ed8; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .btn-main:hover { background: #1e40af; }
+        .bloqueo { background: #fef2f2; border: 1px dashed #fca5a5; color: #991b1b; padding: 18px; border-radius: 8px; font-size: 13px; text-align: center; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -31,12 +36,30 @@
         <ul class="nav-links" id="nav-links"></ul>
     </nav>
     <div class="container">
-        <h2>Portal del Apoderado - Estado de Cuenta</h2>
-        <div class="status-card">
-            Estudiante: Ana Gómez (3° Secundaria) | Status Financiero: AL DÍA / SIN DEUDA PENDIENTE
+        <h2>Estudiante: Ana Gómez (3° Secundaria - B)</h2>
+
+        <div class="status-card al-dia" id="status-card">
+            <span id="status-texto">Estado financiero: AL DÍA / SIN DEUDA PENDIENTE</span>
+            <button class="btn-demo" id="btn-simular">Simular atraso ≥ 2 meses (RN-04)</button>
         </div>
-        <h3>CRONOGRAMA DE PAGO DE PENSIONES</h3>
-        <br>
+
+        <h3>Libreta de Notas y Asistencia (RF-5.1 / RF-5.2)</h3>
+        <div id="bloque-libreta">
+            <table>
+                <thead><tr><th>Curso</th><th>Bimestre I</th><th>Asistencia</th></tr></thead>
+                <tbody>
+                    <tr><td>Matemática</td><td>16.5</td><td>96%</td></tr>
+                    <tr><td>Comunicación</td><td>14.0</td><td>91%</td></tr>
+                </tbody>
+            </table>
+            <br>
+            <button class="btn-main" onclick="alert('Descargando libreta en PDF (RF-5.3)')">Descargar PDF</button>
+        </div>
+        <div id="bloque-bloqueo" class="bloqueo" style="display:none;">
+            🔒 Acceso restringido: la libreta de notas no se puede visualizar ni descargar mientras exista un atraso igual o mayor a 2 meses en el pago de pensiones (RN-04 / RF-5.4). Regularice su estado de cuenta para recuperar el acceso.
+        </div>
+
+        <h3>Cronograma de Pago de Pensiones</h3>
         <table>
             <thead>
                 <tr><th>Concepto</th><th>Monto Base</th><th>Vencimiento</th><th>Monto Pagado</th><th>Estado</th></tr>
@@ -44,6 +67,7 @@
             <tbody>
                 <tr><td>Cuota Ingreso 2026</td><td>S/ 500.00</td><td>15/01/2026</td><td>S/ 500.00</td><td style="color:#166534; font-weight:bold;">PAGADO</td></tr>
                 <tr><td>Pensión Marzo</td><td>S/ 380.00</td><td>31/03/2026</td><td>S/ 380.00</td><td style="color:#166534; font-weight:bold;">PAGADO</td></tr>
+                <tr id="fila-pendiente" style="display:none;"><td>Pensión Abril + Mayo</td><td>S/ 760.00</td><td>31/05/2026</td><td>S/ 0.00</td><td style="color:#991b1b; font-weight:bold;">PENDIENTE</td></tr>
             </tbody>
         </table>
     </div>
@@ -52,6 +76,27 @@
     <script>
         protegerPagina();
         pintarMenu();
+
+        // Simulación de RN-04 (solo para fines de demo del prototipo, sin backend real)
+        let moroso = false;
+        document.getElementById('btn-simular').addEventListener('click', function () {
+            moroso = !moroso;
+            const card = document.getElementById('status-card');
+            const texto = document.getElementById('status-texto');
+            const libreta = document.getElementById('bloque-libreta');
+            const bloqueo = document.getElementById('bloque-bloqueo');
+            const filaPendiente = document.getElementById('fila-pendiente');
+
+            card.classList.toggle('al-dia', !moroso);
+            card.classList.toggle('moroso', moroso);
+            texto.textContent = moroso
+                ? 'Estado financiero: MOROSO (atraso ≥ 2 meses)'
+                : 'Estado financiero: AL DÍA / SIN DEUDA PENDIENTE';
+            libreta.style.display = moroso ? 'none' : 'block';
+            bloqueo.style.display = moroso ? 'block' : 'none';
+            filaPendiente.style.display = moroso ? 'table-row' : 'none';
+            this.textContent = moroso ? 'Simular pago al día' : 'Simular atraso ≥ 2 meses (RN-04)';
+        });
     </script>
 </body>
 </html>

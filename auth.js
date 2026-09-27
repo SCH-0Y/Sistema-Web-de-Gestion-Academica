@@ -2,22 +2,28 @@
 // Módulo compartido: control de acceso (login/sesión) y menú principal dinámico según rol de usuario.
 // Se incluye con <script src="auth.js"></script> en todas las páginas del sistema.
 
+// Actores del sistema según el Catálogo de Actores del proyecto (Av.1):
+// Administrador, Profesor, Auxiliar/Coordinador, Estudiante, Apoderado.
+// (Los Postulantes no inician sesión: postulan mediante un formulario público
+// y recién reciben usuario/clave si son admitidos — RF-2.6).
+
 // Páginas que puede visitar cada rol. La primera de la lista es la "página de inicio" de ese rol.
 const PAGINAS_PERMITIDAS = {
-  ADMIN:      ['admision.html', 'matricula.html'],
-  DOCENTE:    ['notas.html'],
-  APODERADO:  ['libreta.html', 'procesos.html'],
-  ALUMNO:     ['libreta.html', 'procesos.html'],
-  POSTULANTE: ['procesos.html']
+  ADMINISTRADOR: ['admision.html', 'matricula.html', 'asistencia.html', 'libreta.html', 'procesos.html'],
+  PROFESOR:      ['asistencia.html', 'notas.html', 'procesos.html'],
+  AUXILIAR:      ['asistencia.html', 'procesos.html'],
+  ESTUDIANTE:    ['libreta.html'],
+  APODERADO:     ['libreta.html']
 };
 
 // Nombre visible en el menú para cada página.
 const NOMBRES_PAGINA = {
-  'admision.html':  'Admisión',
-  'matricula.html': 'Matrícula',
-  'notas.html':     'Portal Docente',
-  'libreta.html':   'Apoderados',
-  'procesos.html':  'Convivencia'
+  'admision.html':   'Admisión',
+  'matricula.html':  'Matrícula',
+  'asistencia.html': 'Asistencia',
+  'notas.html':      'Notas (Profesor)',
+  'libreta.html':    'Libreta / Apoderados',
+  'procesos.html':   'Convivencia'
 };
 
 function obtenerSesion() {

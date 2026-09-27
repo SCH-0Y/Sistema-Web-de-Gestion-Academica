@@ -6,20 +6,20 @@
     <title>Matrícula Escolar - I.E.P San Jerónimo</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
-        .navbar { background: #1e293b; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .brand-logo { width: 36px; height: 36px; background: #8b0000; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #0f2a4a; min-height: 100vh; }
+        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .brand-logo { width: 36px; height: 36px; background: #1d4ed8; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
         .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
         .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { background: #8b0000; color: white; }
+        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; }
         .container { max-width: 650px; margin: 30px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        h2 { color: #8b0000; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
         input, select, button { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
         .vacantes-box { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 12px; border-radius: 6px; font-size: 13px; margin: 15px 0; font-weight: 600; }
-        .btn-main { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-main:hover { background: #6b0000; }
+        .btn-main { background: #1d4ed8; color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-main:hover { background: #1e40af; }
     </style>
 </head>
 <body>
@@ -42,10 +42,10 @@
         </div>
         <div class="form-group">
             <label>Sección Asignada</label>
-            <select><option>Sección "A" (Vacantes: 28/30)</option></select>
+            <select><option>Sección "A" (Vacantes: 23/25)</option></select>
         </div>
         <div class="vacantes-box">
-            ✓ DISPONIBILIDAD DE VACANTES: Totales: 30 | Disponibles: 2 | Estado: DISPONIBLE
+            ✓ DISPONIBILIDAD DE VACANTES: Totales: 25 | Disponibles: 2 | Estado: DISPONIBLE (RN-03: aforo máximo 25 alumnos por sección)
         </div>
         <button class="btn-main" onclick="alert('Matrícula Confirmada con éxito')">REGISTRAR MATRÍCULA</button>
     </div>
