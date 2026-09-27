@@ -2,44 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Convivencia y Justificaciones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convivencia Escolar - I.E.P San Jerónimo</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
-        .header { background: #8b0000; color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; }
-        .container { background: white; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0; }
-        .box { background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        input, select, textarea, button { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        .navbar { background: #1e293b; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .brand-logo { width: 36px; height: 36px; background: #8b0000; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background: #8b0000; color: white; }
+        .container { max-width: 900px; margin: 30px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        h2 { color: #8b0000; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
         table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #e2e8f0; padding: 8px; text-align: left; font-size: 13px; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
         th { background: #1e293b; color: white; }
-        .btn-main { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .ok { background: #dcfce7; color: #166534; }
+        .warn { background: #fef9c3; color: #854d0e; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <strong>SISTEMA ACADÉMICO | Convivencia y Asistencia</strong>
-        <span>Docente: María López</span>
-    </div>
-    <div class="container">
-        <div class="box">
-            <h3>REGISTRO DE INCIDENCIA DISCIPLINARIA</h3>
-            <input type="text" value="Alumno: Lucia Castro (4° Sec - A)">
-            <label>Categoría:</label>
-            <select><option>Incumplimiento de Reglamento</option></select>
-            <textarea rows="2" placeholder="Descripción de la falta...">Uso no autorizado de dispositivos electrónicos durante la sesión de clase.</textarea>
-            <button class="btn-main">Registrar Incidencia</button>
+    <nav class="navbar">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="brand-logo">SJ</div>
+            <strong>I.E.P. SAN JERÓNIMO</strong>
         </div>
-
-        <h3>SOLICITUDES DE JUSTIFICACIÓN DE ASISTENCIA</h3>
+        <ul class="nav-links" id="nav-links"></ul>
+    </nav>
+    <div class="container">
+        <h2>Registro de Convivencia y Disciplina</h2>
         <table>
             <thead>
-                <tr><th>ID</th><th>Alumno</th><th>Fecha Clase</th><th>Motivo</th><th>Estado</th></tr>
+                <tr><th>Fecha</th><th>Incidencia</th><th>Nivel</th><th>Estado</th></tr>
             </thead>
             <tbody>
-                <tr><td>J-88</td><td>Lucia Castro</td><td>18/09/2026</td><td>Cita Médica Essalud</td><td><strong>APROBADO</strong></td></tr>
-                <tr><td>J-89</td><td>Pedro Aguilar</td><td>19/09/2026</td><td>Motivos Familiares</td><td><strong>PENDIENTE</strong></td></tr>
+                <tr><td>05/04/2026</td><td>Tardanza reiterada</td><td>Leve</td><td><span class="badge warn">EN SEGUIMIENTO</span></td></tr>
+                <tr><td>12/02/2026</td><td>Sin incidencias registradas</td><td>-</td><td><span class="badge ok">CONFORME</span></td></tr>
             </tbody>
         </table>
     </div>
+
+    <script src="auth.js"></script>
+    <script>
+        protegerPagina();
+        pintarMenu();
+    </script>
 </body>
 </html>

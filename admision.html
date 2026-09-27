@@ -2,29 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Módulo de Admisión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Admisión - I.E.P San Jerónimo</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
-        .header { background: #8b0000; color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; align-items: center; }
-        .container { background: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        .filters { display: flex; gap: 10px; margin-bottom: 15px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        .navbar { background: #1e293b; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .brand-logo { width: 36px; height: 36px; background: #8b0000; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background: #8b0000; color: white; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        h2 { color: #8b0000; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        .filters { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
         select, input, button { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
         th { background: #f1f5f9; color: #475569; }
-        .badge { padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
         .approved { background: #dcfce7; color: #166534; }
         .pending { background: #fef9c3; color: #854d0e; }
-        .card { background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 6px; margin-top: 15px; }
-        .btn-main { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .btn-main { background: #8b0000; color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-main:hover { background: #6b0000; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <strong>SISTEMA ACADÉMICO - SECUNDARIA | Módulo de Admisión</strong>
-        <span>Admin: Juan Pérez</span>
-    </div>
+    <nav class="navbar">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="brand-logo">SJ</div>
+            <strong>I.E.P. SAN JERÓNIMO</strong>
+        </div>
+        <ul class="nav-links" id="nav-links"></ul>
+    </nav>
     <div class="container">
+        <h2>Panel de Admisión y Postulantes</h2>
         <div class="filters">
             <select><option>Año 2026</option></select>
             <select><option>Estado (Todos)</option></select>
@@ -38,17 +49,15 @@
             <tbody>
                 <tr><td>101</td><td>Carlos Mendoza</td><td>1° Sec.</td><td>NUEVO</td><td>10/01/2026</td><td><span class="badge pending">PENDIENTE</span></td><td><button>Evaluar</button></td></tr>
                 <tr><td>102</td><td>Ana Gómez</td><td>3° Sec.</td><td>TRASLADO</td><td>11/01/2026</td><td><span class="badge pending">EN_EVALUACION</span></td><td><button>Ver Ficha</button></td></tr>
-                <tr><td>103</td><td>Luis Paredes</td><td>5° Sec.</td><td>NUEVO</td><td>12/01/2026</td><td><span class="badge approved">APROBADO</span></td><td><button>Matricular</button></td></tr>
+                <tr><td>103</td><td>Luis Paredes</td><td>5° Sec.</td><td>NUEVO</td><td>12/01/2026</td><td><span class="badge approved">APROBADO</span></td><td><button class="btn-main" onclick="location.href='matricula.html'">Matricular</button></td></tr>
             </tbody>
         </table>
-        
-        <div class="card">
-            <h3>DETALLE DE SOLICITUD #101</h3>
-            <p><strong>Postulante:</strong> Carlos Mendoza | <strong>DNI:</strong> 74839201 | <strong>Colegio:</strong> P.S. San José</p>
-            <p><strong>Examen de Admisión:</strong> Fecha: 20/01/2026 | Puntaje: <strong>14.5 / 11.00</strong> | Resultado: <span class="badge approved">APROBADO</span></p>
-            <button class="btn-main">Guardar Puntaje</button>
-            <button>Actualizar Solicitud</button>
-        </div>
     </div>
+
+    <script src="auth.js"></script>
+    <script>
+        protegerPagina();
+        pintarMenu();
+    </script>
 </body>
 </html>
