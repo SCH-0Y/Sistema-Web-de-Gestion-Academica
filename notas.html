@@ -18,7 +18,7 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: center; font-size: 13px; }
         th { background: #0f2a4a; color: white; }
-        input[type="number"] { width: 60px; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid #cbd5e1; }
+        input[type="number"] { width: 75px; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid #cbd5e1; }
         .btn-main { background: #1d4ed8; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .btn-main:hover { background: #1e40af; }
     </style>
@@ -42,19 +42,65 @@
             <thead>
                 <tr><th>N°</th><th>Alumno</th><th>Cód. Mat.</th><th>Nota (0-20)</th><th>Estado</th><th>Fecha Reg.</th></tr>
             </thead>
-            <tbody>
-                <tr><td>01</td><td style="text-align:left;">Aguilar Rios, Pedro</td><td>SEC-20261</td><td><input type="number" value="16.5"></td><td>Aprobado</td><td>20/05/2026</td></tr>
-                <tr><td>02</td><td style="text-align:left;">Castro Fernández, Lucia</td><td>SEC-20262</td><td><input type="number" value="09.0"></td><td>Desaprobado</td><td>20/05/2026</td></tr>
+            <tbody id="tabla-alumnos">
+                <tr>
+                    <td>01</td>
+                    <td style="text-align:left;">Aguilar Rios, Pedro</td>
+                    <td>SEC-20261</td>
+                    <td><input type="number" min="0" max="20" step="0.5" value="13.5" class="input-nota"></td>
+                    <td>Aprobado</td>
+                    <td>20/05/2026</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td style="text-align:left;">Castro Fernández, Lucia</td>
+                    <td>SEC-20262</td>
+                    <td><input type="number" min="0" max="20" step="0.5" value="10.4" class="input-nota"></td>
+                    <td>Desaprobado</td>
+                    <td>20/05/2026</td>
+                </tr>
             </tbody>
         </table>
         <br>
-        <button class="btn-main" onclick="alert('Notas guardadas')">Guardar Cambios</button>
+        <button class="btn-main" id="btn-guardar">Guardar Cambios</button>
     </div>
 
     <script src="auth.js"></script>
     <script>
         protegerPagina();
         pintarMenu();
+
+        // Permitir ingresar decimales (como .5) pero limitar rangos de 0 a 20
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('input-nota')) {
+                let val = e.target.value;
+                if (val === "") return;
+                let num = parseFloat(val);
+                if (num > 20) e.target.value = 20;
+                if (num < 0) e.target.value = 0;
+            }
+        });
+
+        // Al hacer clic en Guardar, aplicamos el redondeo
+        document.getElementById('btn-guardar').addEventListener('click', function() {
+            const inputsNotas = document.querySelectorAll('.input-nota');
+            let notasProcesadas = [];
+
+            inputsNotas.forEach((input, index) => {
+                let valorOriginal = parseFloat(input.value);
+                
+                if (!isNaN(valorOriginal)) {
+                    // Math.round redondea hacia arriba si el decimal es .5 o más 
+                    let notaRedondeada = Math.round(valorOriginal);
+                    
+                    // Actualizamos visualmente el input con la nota entera ya redondeada
+                    input.value = notaRedondeada;
+                    notasProcesadas.push(`Alumno ${index + 1}: ${valorOriginal} ➔ Redondeado a ${notaRedondeada}`);
+                }
+            });
+
+            alert('¡Notas guardadas con éxito aplicando el redondeo a favor del alumno!\n\n' + notasProcesadas.join('\n'));
+        });
     </script>
 </body>
 </html>
