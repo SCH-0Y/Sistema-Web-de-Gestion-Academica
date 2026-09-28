@@ -19,11 +19,9 @@
         th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: center; font-size: 13px; }
         th { background: #0f2a4a; color: white; }
 
-        /* Estilo para los inputs de notas y quitar las flechitas (spinners) */
-        input[type="number"] { width: 75px; text-align: center; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 14px; }
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type="number"] { -moz-appearance: textfield; }
+        /* Estilo para las casillas de notas (tipo texto, sin flechitas) */
+        .input-nota { width: 75px; text-align: center; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 14px; outline: none; }
+        .input-nota:focus { border-color: #1d4ed8; box-shadow: 0 0 0 3px rgba(29,78,216,0.15); }
 
         .btn-main { background: #1d4ed8; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .btn-main:hover { background: #1e40af; }
@@ -53,7 +51,7 @@
                     <td>01</td>
                     <td style="text-align:left;">Aguilar Rios, Pedro</td>
                     <td>SEC-20261</td>
-                    <td><input type="number" min="0" max="20" step="0.5" value="13.5" class="input-nota"></td>
+                    <td><input type="text" value="13.5" class="input-nota" maxlength="4"></td>
                     <td>Aprobado</td>
                     <td>20/05/2026</td>
                 </tr>
@@ -61,7 +59,7 @@
                     <td>02</td>
                     <td style="text-align:left;">Castro Fernández, Lucia</td>
                     <td>SEC-20262</td>
-                    <td><input type="number" min="0" max="20" step="0.5" value="10.4" class="input-nota"></td>
+                    <td><input type="text" value="10.4" class="input-nota" maxlength="4"></td>
                     <td>Desaprobado</td>
                     <td>20/05/2026</td>
                 </tr>
@@ -76,43 +74,75 @@
         protegerPagina();
         pintarMenu();
 
-        // Esperar a que todo cargue correctamente
         document.addEventListener("DOMContentLoaded", function() {
 
-            // Control de límites (0 a 20) mientras se escribe
+            // 1. Control estricto MIENTRAS escribe (bloquea el 21 en tiempo real)
             document.addEventListener('input', function(e) {
                 if (e.target.classList.contains('input-nota')) {
-                    let val = e.target.value;
-                    if (val === "") return;
-                    let num = parseFloat(val);
-                    if (num > 20) e.target.value = 20;
-                    if (num < 0) e.target.value = 0;
-                }
-            });
-
-            // Redondear automáticamente al presionar "Enter" (ej. 15.5 sube a 16)
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && e.target.classList.contains('input-nota')) {
-                    e.preventDefault();
                     let input = e.target;
-                    let valorOriginal = parseFloat(input.value);
+                    
+                    // Solo permitir números y punto
+                    input.value = input.value.replace(/[^0-9.]/g, '');
+                    
+                    // Evitar múltiples puntos
+                    let partes = input.value.split('.');
+                    if (partes.length > 2) {
+                        input.value = partes[0] + '.' + partes.slice(1).join('');
+                    }
 
-                    if (!isNaN(valorOriginal)) {
-                        // Math.round redondea .5 o más hacia arriba
-                        let notaRedondeada = Math.round(valorOriginal);
-                        input.value = notaRedondeada;
-                        
-                        // Pasar al siguiente input de nota automáticamente
-                        let todosLosInputs = Array.from(document.querySelectorAll('.input-nota'));
-                        let indexActual = todosLosInputs.indexOf(input);
-                        if (indexActual > -1 && indexActual + 1 < todosLosInputs.length) {
-                            todosLosInputs[indexActual + 1].focus();
-                        } else {
-                            input.blur();
+                    // Limitar estrictamente a 20 al instante
+                    if (input.value !== "") {
+                        let num = parseFloat(input.value);
+                        if (num > 20) {
+                            input.value = "20"; // Si pone 21, 25, 100... baja a 20 al instante
                         }
                     }
                 }
             });
+
+            // 2. Redondeo automático al SALIR de la casilla con el mouse
+            document.addEventListener('blur', function(e) {
+                if (e.target.classList.contains('input-nota')) {
+                    aplicarRedondeo(e.target);
+                }
+            }, true);
+
+            // 3. Redondeo automático al presionar ENTER y saltar a la siguiente nota
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.classList.contains('input-nota')) {
+                    e.preventDefault();
+                    let input = e.target;
+                    
+                    aplicarRedondeo(input);
+                    
+                    // Pasar a la siguiente casilla de abajo automáticamente
+                    let todosLosInputs = Array.from(document.querySelectorAll('.input-nota'));
+                    let indexActual = todosLosInputs.indexOf(input);
+                    if (indexActual > -1 && indexActual + 1 < todosLosInputs.length) {
+                        todosLosInputs[indexActual + 1].focus();
+                    } else {
+                        input.blur();
+                    }
+                }
+            });
+
+            // Función centralizada para el redondeo escolar peruano
+            function aplicarRedondeo(inputElement) {
+                let val = inputElement.value.trim();
+                if (val === "") return;
+                
+                let num = parseFloat(val);
+                if (isNaN(num)) {
+                    inputElement.value = "";
+                    return;
+                }
+                
+                if (num < 0) num = 0;
+                if (num > 20) num = 20;
+
+                // Redondea 10.5 a 11, pero 10.4 se queda en 10
+                inputElement.value = Math.round(num);
+            }
 
         });
     </script>
