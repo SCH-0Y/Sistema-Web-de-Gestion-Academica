@@ -76,38 +76,44 @@
         protegerPagina();
         pintarMenu();
 
-        // Control estricto de límites en tiempo real (bloquea si pasa de 20 o baja de 0)
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('input-nota')) {
-                let val = e.target.value;
-                if (val === "") return;
-                let num = parseFloat(val);
-                if (num > 20) e.target.value = 20;
-                if (num < 0) e.target.value = 0;
-            }
-        });
+        // Esperar a que todo cargue correctamente
+        document.addEventListener("DOMContentLoaded", function() {
 
-        // Redondear automáticamente al presionar "Enter" (ej. 15.5 sube a 16)
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && e.target.classList.contains('input-nota')) {
-                e.preventDefault();
-                let input = e.target;
-                let valorOriginal = parseFloat(input.value);
+            // Control de límites (0 a 20) mientras se escribe
+            document.addEventListener('input', function(e) {
+                if (e.target.classList.contains('input-nota')) {
+                    let val = e.target.value;
+                    if (val === "") return;
+                    let num = parseFloat(val);
+                    if (num > 20) e.target.value = 20;
+                    if (num < 0) e.target.value = 0;
+                }
+            });
 
-                if (!isNaN(valorOriginal)) {
-                    let notaRedondeada = Math.round(valorOriginal);
-                    input.value = notaRedondeada;
-                    
-                    // Pasar al siguiente input automáticamente
-                    let todosLosInputs = Array.from(document.querySelectorAll('.input-nota'));
-                    let indexActual = todosLosInputs.indexOf(input);
-                    if (indexActual > -1 && indexActual + 1 < todosLosInputs.length) {
-                        todosLosInputs[indexActual + 1].focus();
-                    } else {
-                        input.blur();
+            // Redondear automáticamente al presionar "Enter" (ej. 15.5 sube a 16)
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.classList.contains('input-nota')) {
+                    e.preventDefault();
+                    let input = e.target;
+                    let valorOriginal = parseFloat(input.value);
+
+                    if (!isNaN(valorOriginal)) {
+                        // Math.round redondea .5 o más hacia arriba
+                        let notaRedondeada = Math.round(valorOriginal);
+                        input.value = notaRedondeada;
+                        
+                        // Pasar al siguiente input de nota automáticamente
+                        let todosLosInputs = Array.from(document.querySelectorAll('.input-nota'));
+                        let indexActual = todosLosInputs.indexOf(input);
+                        if (indexActual > -1 && indexActual + 1 < todosLosInputs.length) {
+                            todosLosInputs[indexActual + 1].focus();
+                        } else {
+                            input.blur();
+                        }
                     }
                 }
-            }
+            });
+
         });
     </script>
 </body>
