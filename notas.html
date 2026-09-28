@@ -23,7 +23,7 @@
         input[type="number"] { width: 75px; text-align: center; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 14px; }
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type="number"] { -moz-appearance: textfield; } /* Para Firefox */
+        input[type="number"] { -moz-appearance: textfield; }
 
         .btn-main { background: #1d4ed8; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .btn-main:hover { background: #1e40af; }
@@ -76,7 +76,7 @@
         protegerPagina();
         pintarMenu();
 
-        // Controlar límites al escribir
+        // Control estricto de límites en tiempo real (bloquea si pasa de 20 o baja de 0)
         document.addEventListener('input', function(e) {
             if (e.target.classList.contains('input-nota')) {
                 let val = e.target.value;
@@ -87,25 +87,24 @@
             }
         });
 
-        // Redondear automáticamente al presionar "Enter" a favor del alumno (Math.round)
+        // Redondear automáticamente al presionar "Enter" (ej. 15.5 sube a 16)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && e.target.classList.contains('input-nota')) {
-                e.preventDefault(); // Evita saltos extraños de formulario
+                e.preventDefault();
                 let input = e.target;
                 let valorOriginal = parseFloat(input.value);
 
                 if (!isNaN(valorOriginal)) {
-                    // Math.round redondea .5 o más hacia arriba (ej. 10.5 pasa a 11, 10.4 se queda en 10)
                     let notaRedondeada = Math.round(valorOriginal);
                     input.value = notaRedondeada;
                     
-                    // Opcional: pasa el foco al siguiente input de nota si existe
+                    // Pasar al siguiente input automáticamente
                     let todosLosInputs = Array.from(document.querySelectorAll('.input-nota'));
                     let indexActual = todosLosInputs.indexOf(input);
                     if (indexActual > -1 && indexActual + 1 < todosLosInputs.length) {
                         todosLosInputs[indexActual + 1].focus();
                     } else {
-                        input.blur(); // Quita el foco si es el último
+                        input.blur();
                     }
                 }
             }
