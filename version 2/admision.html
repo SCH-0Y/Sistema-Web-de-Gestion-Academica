@@ -1,104 +1,103 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestión de Admisión - I.E.P San Jerónimo</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #0f2a4a; min-height: 100vh; }
-        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .brand-logo { width: 36px; height: 36px; background: #1d4ed8; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
-        .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
-        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; }
-        .container { max-width: 1100px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
-        .filters { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        select, input, button { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
-        th { background: #f1f5f9; color: #475569; }
-        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-        .approved { background: #dcfce7; color: #166534; }
-        .pending { background: #fef9c3; color: #854d0e; }
-        .btn-main { background: #1d4ed8; color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-main:hover { background: #1e40af; }
-    </style>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Framework Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <!-- Tema San Jerónimo, animaciones, Flexbox, Grid y responsivo -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span>☰</span></button>
-        <div style="display:flex; align-items:center; gap:10px;">
-            <div class="brand-logo">SJ</div>
-            <strong>I.E.P. SAN JERÓNIMO</strong>
+    <nav class="navbar is-sj" role="navigation" aria-label="Menú principal">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="index.html">
+                <img class="brand-logo" src="logo.png" alt="Logo I.E.P. San Jerónimo">
+                <strong class="brand-title">I.E.P. SAN JERÓNIMO</strong>
+            </a>
+            <button class="navbar-burger" type="button" aria-label="Abrir menú" aria-expanded="false" data-target="menu-principal">
+                <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+            </button>
         </div>
-        <ul class="nav-links" id="nav-links"></ul>
+        <div class="navbar-menu" id="menu-principal">
+            <div class="navbar-end" id="nav-links"></div>
+        </div>
     </nav>
-    <div class="container">
-        <h2>Panel de Admisión y Postulantes</h2>
-        <div class="filters">
-            <select id="filtro-anio" aria-label="Filtrar por año"><option value="todos">Año 2026</option></select>
-            <select id="filtro-estado" aria-label="Filtrar por estado"><option value="todos">Estado (Todos)</option><option value="PENDIENTE">Pendiente</option><option value="EN_EVALUACION">En evaluación</option><option value="APROBADO">Aprobado</option></select>
-            <select id="filtro-grado" aria-label="Filtrar por grado"><option value="todos">Grado (1° a 5° Sec)</option><option value="1° Sec.">1° Sec.</option><option value="3° Sec.">3° Sec.</option><option value="5° Sec.">5° Sec.</option></select>
-            <button class="btn-main" id="btn-nueva-solicitud" type="button">+ Nueva Solicitud</button>
+
+    <main class="section">
+        <div class="container is-max-desktop">
+            <div class="box page-box">
+                <h2 class="title is-4 page-title">Panel de Admisión y Postulantes</h2>
+                <div class="filters">
+                    <div class="control"><div class="select"><select id="filtro-anio" aria-label="Filtrar por año"><option value="todos">Año 2026</option></select></div></div>
+                    <div class="control"><div class="select"><select id="filtro-estado" aria-label="Filtrar por estado"><option value="todos">Estado (Todos)</option><option value="PENDIENTE">Pendiente</option><option value="EN_EVALUACION">En evaluación</option><option value="APROBADO">Aprobado</option></select></div></div>
+                    <div class="control"><div class="select"><select id="filtro-grado" aria-label="Filtrar por grado"><option value="todos">Grado (1° a 5° Sec)</option><option value="1° Sec.">1° Sec.</option><option value="3° Sec.">3° Sec.</option><option value="5° Sec.">5° Sec.</option></select></div></div>
+                    <div class="control"><button class="button is-link is-rounded" id="btn-nueva-solicitud" type="button">+ Nueva Solicitud</button></div>
+                </div>
+                <div class="table-container">
+                    <table class="table is-fullwidth is-striped is-hoverable">
+                        <thead>
+                            <tr><th>ID</th><th>Postulante</th><th>Grado</th><th>Tipo</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr>
+                        </thead>
+                        <tbody id="tabla-postulantes">
+                            <tr><td>101</td><td>Carlos Mendoza</td><td>1° Sec.</td><td>NUEVO</td><td>10/01/2026</td><td><span class="tag is-warning is-light">PENDIENTE</span></td><td><button type="button" class="button is-small is-link is-outlined is-rounded btn-accion" data-accion="Evaluar">Evaluar</button></td></tr>
+                            <tr><td>102</td><td>Ana Gómez</td><td>3° Sec.</td><td>TRASLADO</td><td>11/01/2026</td><td><span class="tag is-warning is-light">EN_EVALUACION</span></td><td><button type="button" class="button is-small is-link is-outlined is-rounded btn-accion" data-accion="Ver Ficha">Ver Ficha</button></td></tr>
+                            <tr><td>103</td><td>Luis Paredes</td><td>5° Sec.</td><td>NUEVO</td><td>12/01/2026</td><td><span class="tag is-success is-light">APROBADO</span></td><td><button type="button" class="button is-small is-link is-rounded" onclick="location.href='matricula.html'">Matricular</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="table-responsive"><table>
-            <thead>
-                <tr><th>ID</th><th>Postulante</th><th>Grado</th><th>Tipo</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr>
-            </thead>
-            <tbody id="tabla-postulantes">
-                <tr><td>101</td><td>Carlos Mendoza</td><td>1° Sec.</td><td>NUEVO</td><td>10/01/2026</td><td><span class="badge pending">PENDIENTE</span></td><td><button type="button" class="btn-accion" data-accion="Evaluar">Evaluar</button></td></tr>
-                <tr><td>102</td><td>Ana Gómez</td><td>3° Sec.</td><td>TRASLADO</td><td>11/01/2026</td><td><span class="badge pending">EN_EVALUACION</span></td><td><button type="button" class="btn-accion" data-accion="Ver Ficha">Ver Ficha</button></td></tr>
-                <tr><td>103</td><td>Luis Paredes</td><td>5° Sec.</td><td>NUEVO</td><td>12/01/2026</td><td><span class="badge approved">APROBADO</span></td><td><button class="btn-main" onclick="location.href='matricula.html'">Matricular</button></td></tr>
-            </tbody>
-        </table></div>
-    </div>
+    </main>
 
     <script src="auth.js"></script>
     <script>
         protegerPagina();
         pintarMenu();
-    
-    const filas = Array.from(document.querySelectorAll('#tabla-postulantes tr'));
 
-    function aplicarFiltros() {
-        const estado = document.getElementById('filtro-estado').value;
-        const grado = document.getElementById('filtro-grado').value;
-        filas.forEach(function (fila) {
-            const textoEstado = fila.children[5]?.innerText.trim();
-            const textoGrado = fila.children[2]?.innerText.trim();
-            const visibleEstado = estado === 'todos' || textoEstado === estado;
-            const visibleGrado = grado === 'todos' || textoGrado === grado;
-            fila.style.display = visibleEstado && visibleGrado ? '' : 'none';
+        const filas = Array.from(document.querySelectorAll('#tabla-postulantes tr'));
+
+        function aplicarFiltros() {
+            const estado = document.getElementById('filtro-estado').value;
+            const grado = document.getElementById('filtro-grado').value;
+            filas.forEach(function (fila) {
+                const textoEstado = fila.children[5]?.innerText.trim();
+                const textoGrado = fila.children[2]?.innerText.trim();
+                const visibleEstado = estado === 'todos' || textoEstado === estado;
+                const visibleGrado = grado === 'todos' || textoGrado === grado;
+                fila.style.display = visibleEstado && visibleGrado ? '' : 'none';
+            });
+        }
+
+        document.querySelectorAll('#filtro-estado, #filtro-grado').forEach(function (el) {
+            el.addEventListener('change', aplicarFiltros);
         });
-    }
 
-    document.querySelectorAll('#filtro-estado, #filtro-grado').forEach(function (el) {
-        el.addEventListener('change', aplicarFiltros);
-    });
-
-    document.querySelectorAll('.btn-accion').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            alert(btn.dataset.accion + ': ficha del postulante disponible para revisión.');
+        document.querySelectorAll('.btn-accion').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                alert(btn.dataset.accion + ': ficha del postulante disponible para revisión.');
+            });
         });
-    });
 
-    document.getElementById('btn-nueva-solicitud').addEventListener('click', function () {
-        const nombre = prompt('Nombre completo del nuevo postulante:');
-        if (!nombre || !nombre.trim()) return;
-        const fila = document.createElement('tr');
-        fila.innerHTML =
-            '<td>NEW</td><td>' + nombre.trim() + '</td><td>1° Sec.</td>' +
-            '<td>NUEVO</td><td>' + new Date().toLocaleDateString('es-PE') + '</td>' +
-            '<td><span class="badge pending">PENDIENTE</span></td>' +
-            '<td><button type="button" class="btn-accion">Evaluar</button></td>';
-        document.getElementById('tabla-postulantes').appendChild(fila);
-        fila.querySelector('.btn-accion').addEventListener('click', function () {
-            alert('Ficha de ' + nombre.trim() + ' lista para evaluación.');
+        document.getElementById('btn-nueva-solicitud').addEventListener('click', function () {
+            const nombre = prompt('Nombre completo del nuevo postulante:');
+            if (!nombre || !nombre.trim()) return;
+            const fila = document.createElement('tr');
+            const celdaNombre = document.createElement('td');
+            celdaNombre.textContent = nombre.trim();
+            fila.innerHTML =
+                '<td>NEW</td><td></td><td>1° Sec.</td>' +
+                '<td>NUEVO</td><td>' + new Date().toLocaleDateString('es-PE') + '</td>' +
+                '<td><span class="tag is-warning is-light">PENDIENTE</span></td>' +
+                '<td><button type="button" class="button is-small is-link is-outlined is-rounded btn-accion">Evaluar</button></td>';
+            fila.children[1].replaceWith(celdaNombre);
+            document.getElementById('tabla-postulantes').appendChild(fila);
+            filas.push(fila);
+            fila.querySelector('.btn-accion').addEventListener('click', function () {
+                alert('Ficha de ' + nombre.trim() + ' lista para evaluación.');
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
