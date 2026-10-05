@@ -74,71 +74,63 @@ function pintarMenu() {
     const sesion = obtenerSesion();
     navLinks.innerHTML = '';
 
+    // Crea un enlace con las clases de Bulma para la barra de navegación
+    function crearItem(texto, href, activo) {
+        const a = document.createElement('a');
+        a.className = 'navbar-item' + (activo ? ' is-active' : '');
+        a.href = href;
+        a.textContent = texto;
+        navLinks.appendChild(a);
+        return a;
+    }
+
     if (!sesion || !PAGINAS_PERMITIDAS[sesion.rol]) {
-        const li = document.createElement('li');
-        li.innerHTML = '<a href="index.html">Iniciar sesión</a>';
-        navLinks.appendChild(li);
+        crearItem('Iniciar sesión', 'index.html');
         return;
     }
 
     const permitidas = PAGINAS_PERMITIDAS[sesion.rol];
     const actual = paginaActual();
 
-    const liInicio = document.createElement('li');
-    liInicio.innerHTML = '<a href="index.html">Inicio</a>';
-    navLinks.appendChild(liInicio);
+    crearItem('Inicio', 'index.html');
 
     permitidas.forEach(function (pagina) {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = pagina;
-        a.textContent = NOMBRES_PAGINA[pagina] || pagina;
-        if (pagina === actual) a.classList.add('active');
-        li.appendChild(a);
-        navLinks.appendChild(li);
+        crearItem(NOMBRES_PAGINA[pagina] || pagina, pagina, pagina === actual);
     });
 
-    const liInfo = document.createElement('li');
     const info = document.createElement('span');
-    info.className = 'session-info';
+    info.className = 'navbar-item session-info';
     info.textContent = sesion.rol + ' · ' + sesion.codigo;
-    liInfo.appendChild(info);
-    navLinks.appendChild(liInfo);
+    navLinks.appendChild(info);
 
-    const liSalir = document.createElement('li');
-    const aSalir = document.createElement('a');
-    aSalir.href = '#';
-    aSalir.textContent = 'Cerrar sesión';
+    const aSalir = crearItem('Cerrar sesión', '#');
+    aSalir.classList.add('nav-salir');
     aSalir.addEventListener('click', function (e) {
         e.preventDefault();
         cerrarSesion();
     });
-    liSalir.appendChild(aSalir);
-    navLinks.appendChild(liSalir);
 }
 
+// Botón hamburguesa de Bulma (.navbar-burger) para el menú móvil
 function configurarMenuMovil() {
-    document.querySelectorAll('.nav-toggle').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const nav = btn.parentElement.querySelector('.nav-links');
-            if (!nav) return;
-            const abierto = nav.classList.toggle('mobile-open');
-            btn.setAttribute('aria-expanded', String(abierto));
-            btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
-            btn.querySelector('span').textContent = abierto ? '×' : '☰';
-        });
-    });
+    document.querySelectorAll('.navbar-burger').forEach(function (burger) {
+        const menu = document.getElementById(burger.dataset.target);
+        if (!menu) return;
 
-    document.querySelectorAll('.nav-links a').forEach(function (link) {
-        link.addEventListener('click', function () {
-            const nav = link.closest('.nav-links');
-            const btn = nav && nav.parentElement.querySelector('.nav-toggle');
-            if (nav) nav.classList.remove('mobile-open');
-            if (btn) {
-                btn.setAttribute('aria-expanded', 'false');
-                btn.setAttribute('aria-label', 'Abrir menú');
-                btn.querySelector('span').textContent = '☰';
-            }
+        function alternar(abierto) {
+            burger.classList.toggle('is-active', abierto);
+            menu.classList.toggle('is-active', abierto);
+            burger.setAttribute('aria-expanded', String(abierto));
+            burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+        }
+
+        burger.addEventListener('click', function () {
+            alternar(!menu.classList.contains('is-active'));
+        });
+
+        // Al elegir una opción, el menú móvil se cierra
+        menu.addEventListener('click', function (e) {
+            if (e.target.closest('a.navbar-item')) alternar(false);
         });
     });
 }
