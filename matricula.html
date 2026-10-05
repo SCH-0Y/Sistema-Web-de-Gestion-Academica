@@ -6,44 +6,30 @@
     <title>Matrícula Escolar - I.E.P San Jerónimo</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #0f2a4a; min-height: 100vh; }
-        
-        /* NAVBAR */
-        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 15px rgba(15,42,74,0.15); }
-        .brand { display: flex; align-items: center; gap: 12px; }
-        .brand img { width: 38px; height: 38px; border-radius: 50%; background: white; padding: 2px; transition: transform 0.3s ease; }
-        .brand:hover img { transform: rotate(8deg); }
-        .brand-title { font-size: 14px; font-weight: 700; letter-spacing: 0.5px; line-height: 1.2; }
-        .brand-title small { display: block; font-size: 10px; font-weight: 400; color: #93c5fd; }
-
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #0f2a4a; min-height: 100vh; }
+        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .brand-logo { width: 36px; height: 36px; background: #1d4ed8; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
         .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
-        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: all 0.25s ease; }
-        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; transform: translateY(-1px); }
-
-        .container { max-width: 650px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(15,42,74,0.06); border: 1px solid #e2e8f0; }
-        
-        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; font-weight: 700; font-size: 20px; }
-        .form-group { margin-bottom: 16px; }
-        label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 13px; color: #334155; }
-        
-        input, select { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 13px; font-family: inherit; }
-        input:focus, select:focus { outline: none; border-color: #1d4ed8; box-shadow: 0 0 0 3px rgba(29,78,216,0.15); }
-
-        .vacantes-box { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 14px; border-radius: 8px; font-size: 13px; margin: 18px 0; font-weight: 600; line-height: 1.4; }
-        
-        .btn-main { background: #1d4ed8; color: white; border: none; font-weight: bold; cursor: pointer; transition: all 0.25s ease; width: 100%; padding: 12px; border-radius: 6px; font-size: 13px; text-transform: uppercase; box-shadow: 0 2px 5px rgba(29,78,216,0.2); }
-        .btn-main:hover { background: #1e40af; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(29,78,216,0.3); }
+        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; }
+        .container { max-width: 650px; margin: 30px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input, select, button { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+        .vacantes-box { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 12px; border-radius: 6px; font-size: 13px; margin: 15px 0; font-weight: 600; }
+        .btn-main { background: #1d4ed8; color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-main:hover { background: #1e40af; }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="brand">
-            <img src="./assets/logo.png" alt="Logo I.E.P San Jerónimo">
-            <div class="brand-title">I.E.P. SAN JERÓNIMO<small>Nivel Secundaria · 1° a 5° año</small></div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="brand-logo">SJ</div>
+            <strong>I.E.P. SAN JERÓNIMO</strong>
         </div>
         <ul class="nav-links" id="nav-links"></ul>
     </nav>
-
     <div class="container">
         <h2>Ficha de Matrícula Escolar 2026</h2>
         <div class="form-group">
