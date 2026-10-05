@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convivencia Escolar - I.E.P San Jerónimo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .brand-logo { width: 36px; height: 36px; background: #1d4ed8; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; }
+        .container { max-width: 900px; margin: 30px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        .filters { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        select, button.btn-agregar { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
+        th { background: #0f2a4a; color: white; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .ok { background: #dcfce7; color: #166534; }
+        .warn { background: #fef9c3; color: #854d0e; }
+        .grave { background: #fee2e2; color: #991b1b; }
+        .citacion { margin-top: 16px; background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 14px; border-radius: 8px; font-size: 13px; font-weight: 700; display: none; }
+        .citacion.visible { display: block; }
+        .btn-aux { background: #1d4ed8; color: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span>☰</span></button>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="brand-logo">SJ</div>
+            <strong>I.E.P. SAN JERÓNIMO</strong>
+        </div>
+        <ul class="nav-links" id="nav-links"></ul>
+    </nav>
+    <div class="container">
+        <h2>Registro de Convivencia y Disciplina</h2>
+        <p style="font-size:13px; color:#64748b; margin-bottom:12px;" id="rol-descripcion">PN-07 · RN-05</p>
+        <div class="filters">
+            <select><option>Estudiante: Aguilar Rios, Pedro</option></select>
+            <select><option>Bimestre I (2026)</option></select>
+            <button class="btn-agregar" id="btn-agregar-incidencia" type="button">+ Registrar incidencia</button>
+        </div>
+        <div class="table-responsive"><table>
+            <thead>
+                <tr><th>Fecha</th><th>Incidencia</th><th>Nivel</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>04/03/2026</td><td>Tardanza reiterada</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td></tr>
+                <tr><td>18/03/2026</td><td>No presentó tarea / material</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td></tr>
+                <tr><td>05/04/2026</td><td>Falta de respeto a un docente</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td></tr>
+            </tbody>
+        </table></div>
+        <div class="citacion visible" id="alerta-citacion">
+            ⚠ CITACIÓN AUTOMÁTICA GENERADA (RN-05): el alumno acumuló 3 incidencias leves en el mismo bimestre. Se notificó automáticamente al apoderado.
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        protegerPagina();
+        pintarMenu();
+
+        (function () {
+            const sesion = obtenerSesion();
+            if (!sesion) return;
+            const descripcion = document.getElementById('rol-descripcion');
+            descripcion.textContent = sesion.rol === 'AUXILIAR'
+                ? 'Vista de Auxiliar/Coordinador: supervisión de incidencias y aprobación de justificaciones (RF-3.4 / PN-07)'
+                : 'Vista de Profesor: registro de incidencias ocurridas en el aula (PN-07)';
+        })();
+    
+    document.getElementById('btn-agregar-incidencia').addEventListener('click', function () {
+        const incidencia = prompt('Describa la incidencia:');
+        if (!incidencia || !incidencia.trim()) return;
+        const fila = document.createElement('tr');
+        const fecha = new Date().toLocaleDateString('es-PE');
+        fila.innerHTML = '<td>' + fecha + '</td><td>' + incidencia.trim() +
+            '</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td>';
+        document.querySelector('tbody').appendChild(fila);
+        alert('Incidencia registrada correctamente.');
+    });
+</script>
+</body>
+</html>
