@@ -31,9 +31,11 @@
         .resumen { margin-top: 18px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 14px; font-size: 13px; color: #1e40af; font-weight: 600; }
         .solo-auxiliar { display: none; }
     </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar">
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span>☰</span></button>
         <div style="display:flex; align-items:center; gap:10px;">
             <div class="brand-logo">SJ</div>
             <strong>I.E.P. SAN JERÓNIMO</strong>
@@ -48,7 +50,7 @@
             <label>Curso: <strong>Comunicación</strong></label>
             <label>Fecha: <strong>27/09/2026</strong></label>
         </div>
-        <table>
+        <div class="table-responsive"><table>
             <thead>
                 <tr><th>N°</th><th>Alumno</th><th>Estado</th><th>% Asistencia acumulada</th><th class="solo-auxiliar">Justificación</th></tr>
             </thead>
@@ -66,12 +68,12 @@
                     <td class="solo-auxiliar"><button class="btn-aux">Aprobar justificación</button></td>
                 </tr>
             </tbody>
-        </table>
+        </table></div>
         <div class="resumen">
             El porcentaje de asistencia acumulada se actualiza automáticamente con cada registro (RF-3.3).
         </div>
         <br>
-        <button class="btn-main" id="btn-guardar" onclick="alert('Asistencia guardada')">Guardar Asistencia</button>
+        <button class="btn-main" id="btn-guardar" type="button">Guardar Asistencia</button>
     </div>
 
     <script src="auth.js"></script>
@@ -93,6 +95,41 @@
                 descripcion.textContent = 'Vista de Profesor: registro diario de asistencia por curso y sección (RF-3.1 a RF-3.3)';
             }
         })();
-    </script>
+    
+    const btnGuardar = document.getElementById('btn-guardar');
+    const resumen = document.getElementById('resumen-asistencia');
+
+    function actualizarResumen() {
+        const estados = Array.from(document.querySelectorAll('.estado'));
+        const presentes = estados.filter(e => e.value === 'Presente').length;
+        const tardanzas = estados.filter(e => e.value === 'Tardanza').length;
+        const faltas = estados.filter(e => e.value === 'Falta').length;
+        resumen.textContent = 'Registro actual: ' + presentes + ' presente(s), ' +
+            tardanzas + ' tardanza(s) y ' + faltas + ' falta(s).';
+    }
+
+    document.querySelectorAll('.estado').forEach(function (select) {
+        select.addEventListener('change', actualizarResumen);
+    });
+
+    if (btnGuardar) {
+        btnGuardar.addEventListener('click', function () {
+            const registros = Array.from(document.querySelectorAll('.estado')).map(function (select) {
+                return select.value;
+            });
+            localStorage.setItem('asistenciaDemo', JSON.stringify(registros));
+            btnGuardar.textContent = '✓ Asistencia guardada';
+            setTimeout(() => btnGuardar.textContent = 'Guardar Asistencia', 1800);
+            actualizarResumen();
+        });
+    }
+
+    document.querySelectorAll('.btn-aux').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            btn.textContent = '✓ Justificación aprobada';
+            btn.disabled = true;
+        });
+    });
+</script>
 </body>
 </html>
