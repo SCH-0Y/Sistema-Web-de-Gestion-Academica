@@ -6,54 +6,96 @@
     <title>Convivencia Escolar - I.E.P San Jerónimo</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
-        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .brand-logo { width: 36px; height: 36px; background: #1d4ed8; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        
+        /* NAVBAR */
+        .navbar { background: #0f2a4a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 15px rgba(15,42,74,0.15); }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand img { width: 38px; height: 38px; border-radius: 50%; background: white; padding: 2px; transition: transform 0.3s ease; }
+        .brand:hover img { transform: rotate(8deg); }
+        .brand-title { font-size: 14px; font-weight: 700; letter-spacing: 0.5px; line-height: 1.2; }
+        .brand-title small { display: block; font-size: 10px; font-weight: 400; color: #93c5fd; }
+
         .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; align-items: center; }
-        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; }
-        .container { max-width: 900px; margin: 30px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: all 0.25s ease; }
+        .nav-links a:hover, .nav-links a.active { background: #1d4ed8; color: white; transform: translateY(-1px); }
+
+        .container { max-width: 900px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(15,42,74,0.06); border: 1px solid #e2e8f0; }
+        
+        h2 { color: #1d4ed8; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; font-weight: 700; font-size: 20px; }
         .filters { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        select, button.btn-agregar { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; font-size: 13px; }
-        th { background: #0f2a4a; color: white; }
+        
+        select, button.btn-agregar { padding: 9px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-family: inherit; }
+        select:focus { outline: none; border-color: #1d4ed8; box-shadow: 0 0 0 3px rgba(29,78,216,0.15); }
+
+        table { width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+        th, td { border: 1px solid #e2e8f0; padding: 11px 12px; text-align: left; font-size: 13px; }
+        th { background: #0f2a4a; color: white; font-weight: 600; }
+        td { color: #1e293b; background: white; }
+        tr:hover td { background: #f8fafc; }
+
         .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
         .ok { background: #dcfce7; color: #166534; }
         .warn { background: #fef9c3; color: #854d0e; }
         .grave { background: #fee2e2; color: #991b1b; }
+        
         .citacion { margin-top: 16px; background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 14px; border-radius: 8px; font-size: 13px; font-weight: 700; display: none; }
         .citacion.visible { display: block; }
-        .btn-aux { background: #1d4ed8; color: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        
+        .btn-agregar { background: #1d4ed8; color: white; border: none; font-weight: bold; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 2px 5px rgba(29,78,216,0.2); }
+        .btn-agregar:hover { background: #1e40af; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(29,78,216,0.3); }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div style="display:flex; align-items:center; gap:10px;">
-            <div class="brand-logo">SJ</div>
-            <strong>I.E.P. SAN JERÓNIMO</strong>
+        <div class="brand">
+            <img src="./assets/logo.png" alt="Logo I.E.P San Jerónimo">
+            <div class="brand-title">I.E.P. SAN JERÓNIMO<small>Nivel Secundaria · 1° a 5° año</small></div>
         </div>
         <ul class="nav-links" id="nav-links"></ul>
     </nav>
+
     <div class="container">
         <h2>Registro de Convivencia y Disciplina</h2>
         <p style="font-size:13px; color:#64748b; margin-bottom:12px;" id="rol-descripcion">PN-07 · RN-05</p>
+        
         <div class="filters">
             <select><option>Estudiante: Aguilar Rios, Pedro</option></select>
             <select><option>Bimestre I (2026)</option></select>
             <button class="btn-agregar" onclick="alert('Nueva incidencia registrada')">+ Registrar incidencia</button>
         </div>
+
         <table>
             <thead>
-                <tr><th>Fecha</th><th>Incidencia</th><th>Nivel</th><th>Estado</th></tr>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Incidencia</th>
+                    <th>Nivel</th>
+                    <th>Estado</th>
+                </tr>
             </thead>
             <tbody>
-                <tr><td>04/03/2026</td><td>Tardanza reiterada</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td></tr>
-                <tr><td>18/03/2026</td><td>No presentó tarea / material</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td></tr>
-                <tr><td>05/04/2026</td><td>Falta de respeto a un docente</td><td>Leve</td><td><span class="badge warn">REGISTRADO</span></td></tr>
+                <tr>
+                    <td>04/03/2026</td>
+                    <td>Tardanza reiterada</td>
+                    <td>Leve</td>
+                    <td><span class="badge warn">REGISTRADO</span></td>
+                </tr>
+                <tr>
+                    <td>18/03/2026</td>
+                    <td>No presentó tarea / material</td>
+                    <td>Leve</td>
+                    <td><span class="badge warn">REGISTRADO</span></td>
+                </tr>
+                <tr>
+                    <td>05/04/2026</td>
+                    <td>Falta de respeto a un docente</td>
+                    <td>Leve</td>
+                    <td><span class="badge warn">REGISTRADO</span></td>
+                </tr>
             </tbody>
         </table>
+
         <div class="citacion visible" id="alerta-citacion">
             ⚠ CITACIÓN AUTOMÁTICA GENERADA (RN-05): el alumno acumuló 3 incidencias leves en el mismo bimestre. Se notificó automáticamente al apoderado.
         </div>
