@@ -1,142 +1,366 @@
-html { overflow-x: hidden; }
-body { overflow-x: hidden; }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap');
+
+/* =====================================================================
+   style.css · Tema San Jerónimo sobre Bulma 1.0
+   Se carga DESPUÉS de bulma.min.css en todas las páginas internas.
+   Contenido (Semana 9):
+     1. Variables y base
+     2. Navbar
+     3. Componentes Bulma personalizados (botones, tablas, tags, forms)
+     4. FLEXBOX
+     5. CSS GRID
+     6. ANIMACIONES Y TRANSICIONES
+     7. DISEÑO RESPONSIVO
+   ===================================================================== */
+
+/* ---------- 1. Variables y base ---------- */
+:root {
+    --sj-blue: #1f78c1;
+    --sj-navy: #175391;
+    --sj-sky: #2a85ba;
+    --sj-ink: #14284b;
+    --sj-line: #dceaf5;
+    --sj-soft: #f1f8fd;
+    --sj-shadow: 0 16px 40px rgba(23, 83, 145, .12);
+
+    /* Bulma 1.0: color principal y tipografía */
+    --bulma-family-primary: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+    --bulma-link-h: 207deg;
+    --bulma-link-s: 72%;
+    --bulma-link-l: 44%;
+    --bulma-primary-h: 207deg;
+    --bulma-primary-s: 72%;
+    --bulma-primary-l: 44%;
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+    background: #fff;
+    color: var(--sj-ink);
+    font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 img { max-width: 100%; height: auto; }
-button, input, select, textarea { font: inherit; }
-button:focus-visible, a:focus-visible, input:focus-visible,
-select:focus-visible { outline: 3px solid rgba(29,78,216,.28); outline-offset: 2px; }
+button, input, select, textarea { font-family: inherit; }
+.title, .subtitle strong { color: var(--sj-navy); }
+.subtitle { color: #5b6f80; font-size: .9rem; }
 
-.navbar { min-width: 0; }
-.nav-toggle {
-    display: none;
-    width: 42px !important;
-    height: 40px;
-    padding: 0 !important;
-    border: 1px solid rgba(255,255,255,.25) !important;
-    border-radius: 7px !important;
-    background: transparent !important;
-    color: #fff !important;
-    font-size: 22px !important;
-    line-height: 1;
-    cursor: pointer;
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid rgba(31, 120, 193, .35);
+    outline-offset: 2px;
 }
-.nav-toggle span, .nav-toggle::before, .nav-toggle::after {
-    display: block;
-}
-.nav-mobile-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+/* ---------- 2. Navbar ---------- */
+.navbar.is-sj {
+    background: linear-gradient(90deg, var(--sj-navy), var(--sj-sky));
+    box-shadow: 0 2px 14px rgba(23, 83, 145, .25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: bajar .5s ease-out;
+}
+.navbar.is-sj .navbar-brand .navbar-item { color: #fff; gap: 10px; }
+.navbar.is-sj .navbar-brand .navbar-item:hover { background: transparent; color: #fff; }
+.navbar.is-sj .brand-logo {
+    width: 44px; height: 44px; max-height: none;
+    border-radius: 50%; background: #fff; object-fit: cover;
+    transition: transform .6s ease;
+}
+.navbar.is-sj .navbar-brand .navbar-item:hover .brand-logo { transform: rotate(360deg); }
+.navbar.is-sj .brand-title {
+    font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: .3px;
+}
+.navbar.is-sj .navbar-burger { color: #fff; }
+.navbar.is-sj .navbar-burger:hover { background: rgba(255, 255, 255, .16); }
+.navbar.is-sj .navbar-menu { background: transparent; box-shadow: none; }
+.navbar.is-sj a.navbar-item,
+.navbar.is-sj .navbar-item {
+    color: #fff;
+    font-weight: 600;
+    font-size: .85rem;
+    border-radius: 12px;
+    margin: 0 2px;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+.navbar.is-sj a.navbar-item:hover,
+.navbar.is-sj a.navbar-item:focus {
+    background: rgba(255, 255, 255, .18);
+    color: #fff;
+    transform: translateY(-2px);
+}
+.navbar.is-sj a.navbar-item.is-active {
+    background: #fff;
+    color: var(--sj-navy);
+}
+.navbar.is-sj .session-info {
+    color: rgba(255, 255, 255, .85);
+    font-size: .75rem;
+    cursor: default;
+}
+.navbar.is-sj .nav-salir { border: 1.5px solid rgba(255, 255, 255, .55); }
+
+/* ---------- 3. Componentes Bulma personalizados ---------- */
+.page-box {
+    background: #fff;
+    border: 1px solid var(--sj-line);
+    border-radius: 26px;
+    box-shadow: var(--sj-shadow);
+    padding: 1.75rem;
+}
+.page-title {
+    color: var(--sj-navy);
+    border-bottom: 3px solid var(--sj-sky);
+    padding-bottom: .5rem;
+    margin-bottom: 1rem !important;
+}
+
+/* Botones */
+.button.is-link {
+    background-color: var(--sj-blue);
+    border-color: transparent;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(31, 120, 193, .3);
+}
+.button.is-link:hover,
+.button.is-link:focus { background-color: var(--sj-navy); color: #fff; border-color: transparent; }
+.button.is-link.is-outlined {
+    background: transparent; color: var(--sj-blue); border-color: var(--sj-blue); box-shadow: none;
+}
+.button.is-link.is-outlined:hover { background: var(--sj-blue); color: #fff; }
+.button.is-success.is-light { font-weight: 700; }
+
+/* Tablas */
+table.table thead th {
+    background: var(--sj-navy);
+    color: #fff;
+    border: none;
+    white-space: nowrap;
+}
+table.table.is-striped tbody tr:not(.is-selected):nth-child(even) > * { background-color: var(--sj-soft); }
+table.table tbody td { vertical-align: middle; }
+.table-container { border-radius: 14px; }
+
+/* Etiquetas, formularios y notificaciones */
+.tag { font-weight: 700; letter-spacing: .3px; }
+.label { color: var(--sj-ink); font-size: .85rem; }
+.input, .select select { border-radius: 10px; border-color: var(--sj-line); }
+.input:focus, .select select:focus {
+    border-color: var(--sj-blue);
+    box-shadow: 0 0 0 3px rgba(31, 120, 193, .18);
+}
+.notification { border-radius: 14px; font-size: .85rem; font-weight: 600; }
+.notification.is-bloqueo { border: 1px dashed #f14668; text-align: center; }
+
+.input-nota { width: 80px; text-align: center; font-size: .95rem; }
+.solo-auxiliar { display: none; }
+
+/* ---------- 4. FLEXBOX ---------- */
+/* Filtros (Bulma .field.is-grouped ya usa flex; aquí se refuerza) */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.25rem !important;
+}
+.filters .control { margin: 0 !important; }
+
+/* Tarjeta de estado: texto a la izquierda, botón a la derecha */
+.status-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    transition: background-color .4s ease, color .4s ease;
+}
+
+/* Layout general del dashboard: cabecera + (sidebar | contenido) */
+.page-container { display: flex; flex-direction: column; min-height: 100vh; }
+.layout-flex { flex: 1; margin: 0 !important; }
+.sidebar {
+    background: var(--sj-navy);
+    width: 250px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    transition: all .3s ease-in-out;
+}
+.sidebar .menu-list a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #dceffe;
+    font-size: .8rem;
+    font-weight: 600;
     border-radius: 8px;
+    padding: .75rem 1rem;
+    transition: background .2s ease, transform .2s ease, color .2s ease;
 }
-.table-responsive table { min-width: 650px; }
-
-.filters { align-items: center; }
-.filters > * { max-width: 100%; }
-.btn-main, .btn-aux, button { min-height: 38px; }
-
-@media (max-width: 860px) {
-    .navbar {
-        padding: 10px 16px !important;
-        position: relative;
-    }
-    .navbar > div:first-child {
-        min-width: 0;
-        flex: 1;
-    }
-    .navbar > div:first-child strong,
-    .brand-title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .nav-toggle { display: block; }
-    .nav-links,
-    .navbar .nav-links {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch !important;
-        gap: 4px !important;
-        display: none !important;
-        padding-top: 8px;
-    }
-    .nav-links.mobile-open,
-    .navbar .nav-links.mobile-open { display: flex !important; }
-    .nav-links > li { width: 100%; }
-    .nav-links > li > a,
-    .nav-links button.dropdown-toggle {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 11px 12px !important;
-    }
-    .nav-links .dropdown-menu {
-        position: static;
-        width: 100%;
-        margin: 0;
-        box-shadow: none;
-        border-radius: 6px;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        display: none;
-    }
-    .nav-links li.open .dropdown-menu { display: block; }
-    .container {
-        width: calc(100% - 24px) !important;
-        margin: 18px auto !important;
-        padding: 18px !important;
-    }
-    h2 { font-size: 21px; }
-    .filters { gap: 8px !important; }
-    .filters label { flex: 1 1 180px; }
-    .hero { padding: 44px 16px 38px !important; }
-    .hero-illustration { max-width: min(340px, 88vw) !important; }
-    .section { padding: 46px 16px !important; }
-    .cards { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important; }
-    .tab-panel { padding: 20px !important; }
-    .agenda-item { align-items: flex-start !important; }
-    .card-login { max-height: calc(100vh - 30px); overflow-y: auto; }
+.sidebar .menu-list a:hover { background: rgba(255, 255, 255, .14); color: #fff; transform: translateX(4px); }
+.sidebar .menu-list a.is-active { background: var(--sj-sky); color: #fff; border-right: 4px solid #fff; }
+.panel-main { flex: 1; padding: 1.5rem; min-width: 0; }
+.navbar.is-sj .navbar-brand.is-spread { flex: 1; justify-content: space-between; }
+.user-menu { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.user-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255, 255, 255, .22);
+    display: flex; align-items: center; justify-content: center; font-size: .7rem;
 }
 
-@media (max-width: 600px) {
-    .navbar { padding: 9px 12px !important; }
-    .brand-logo { width: 34px !important; height: 34px !important; flex: 0 0 auto; }
-    .navbar strong { font-size: 13px; }
-    .container {
-        width: calc(100% - 16px) !important;
-        padding: 14px !important;
-        margin: 12px auto !important;
-        border-radius: 8px !important;
-    }
-    h2 { font-size: 19px; }
-    .filters { display: grid !important; grid-template-columns: 1fr; }
-    .filters > *, .filters label { width: 100%; }
-    .btn-main, .btn-aux { width: 100%; }
-    .table-responsive table { min-width: 620px; }
-    th, td { padding: 8px !important; font-size: 12px !important; }
-    .status-card { align-items: stretch !important; }
-    .status-card .btn-demo { width: 100%; }
-    .hero h1 { font-size: 30px !important; }
-    .hero-actions { flex-direction: column; align-items: stretch; }
-    .btn-hero { width: 100%; }
-    .cards { grid-template-columns: 1fr !important; }
-    .card { padding: 20px !important; }
-    .section-title { margin-bottom: 26px !important; }
-    .tabs { display: grid; grid-template-columns: 1fr 1fr; }
-    .tab-btn { padding: 9px 10px !important; }
-    .agenda-item { gap: 10px !important; padding: 12px !important; }
-    .agenda-date { min-width: 58px !important; padding: 7px 8px !important; }
+/* ---------- 5. CSS GRID ---------- */
+/* Datos de cabecera (curso, sección, fecha): columnas automáticas */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .75rem;
+    background: var(--sj-soft);
+    border-radius: 14px;
+    padding: .9rem 1rem;
+    margin-bottom: 1.25rem;
+    font-size: .85rem;
+}
+.info-grid span { display: block; color: #5b6f80; font-size: .7rem; text-transform: uppercase; letter-spacing: .6px; }
+.info-grid strong { color: var(--sj-ink); }
+
+/* Dashboard: 3 columnas (Bulma .fixed-grid / .grid) con espacio entre celdas */
+.dashboard-grid.grid { --bulma-grid-gap: 1.25rem; gap: 1.25rem; }
+.dash-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--sj-line);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    overflow: hidden;
+}
+.dash-card .card-header { box-shadow: none; border-bottom: 1px solid #f1f5f9; }
+.dash-card .card-header-title { color: var(--sj-navy); font-size: .95rem; }
+.dash-card .card-content { flex: 1; font-size: .85rem; line-height: 1.6; }
+.dash-card .card-footer { border-top: none; justify-content: flex-end; padding: .75rem 1rem; }
+.card-icon {
+    width: 32px; height: 32px; margin: .6rem .9rem;
+    background: #e0f2fe; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
 }
 
+/* ---------- 6. ANIMACIONES Y TRANSICIONES ---------- */
+@keyframes bajar {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes subir {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes aparecer-escala {
+    from { opacity: 0; transform: scale(.95) translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes fila-entra {
+    from { opacity: 0; transform: translateX(-14px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes latido {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(241, 70, 104, .45); }
+    50%      { box-shadow: 0 0 0 10px rgba(241, 70, 104, 0); }
+}
+
+/* Entrada de la caja principal y títulos */
+.page-box { animation: subir .6s cubic-bezier(.2, .8, .2, 1) both; }
+.page-title { animation: bajar .6s .1s ease-out both; }
+.anim-in { animation: aparecer-escala .5s ease-out both; }
+
+/* Filas de las tablas: aparecen una a una */
+table.table tbody tr { animation: fila-entra .5s ease-out both; }
+table.table tbody tr:nth-child(1) { animation-delay: .10s; }
+table.table tbody tr:nth-child(2) { animation-delay: .20s; }
+table.table tbody tr:nth-child(3) { animation-delay: .30s; }
+table.table tbody tr:nth-child(4) { animation-delay: .40s; }
+table.table tbody tr:nth-child(n+5) { animation-delay: .50s; }
+table.table tbody tr { transition: background-color .25s ease; }
+
+/* Botones: elevación al pasar el mouse, hundimiento al pulsar */
+.button { transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.button:hover { transform: translateY(-2px); }
+.button:active { transform: translateY(0) scale(.97); }
+
+/* Etiquetas y campos */
+.tag { transition: transform .2s ease; }
+.tag:hover { transform: scale(1.08); }
+.input, .select select { transition: border-color .25s ease, box-shadow .25s ease; }
+
+/* Asistencia: franja de color por estado (transición suave al cambiar) */
+table.table tbody tr td:first-child { transition: box-shadow .35s ease; }
+tr.estado-presente   td:first-child { box-shadow: inset 5px 0 0 #48c78e; }
+tr.estado-tardanza   td:first-child { box-shadow: inset 5px 0 0 #ffe08a; }
+tr.estado-falta      td:first-child { box-shadow: inset 5px 0 0 #f14668; }
+tr.estado-justificado td:first-child { box-shadow: inset 5px 0 0 #3e8ed0; }
+
+/* Alerta de citación con pulso */
+.citacion { display: none; }
+.citacion.visible { display: block; animation: aparecer-escala .6s ease-out both, latido 2.2s 1s ease-in-out infinite; }
+
+/* Dashboard: tarjetas con entrada escalonada y elevación */
+.dash-card { opacity: 0; animation: aparecer-escala .6s ease-out forwards; transition: transform .3s ease, box-shadow .3s ease; }
+.dashboard-grid .cell:nth-child(1) .dash-card { animation-delay: .10s; }
+.dashboard-grid .cell:nth-child(2) .dash-card { animation-delay: .20s; }
+.dashboard-grid .cell:nth-child(3) .dash-card { animation-delay: .30s; }
+.dashboard-grid .cell:nth-child(4) .dash-card { animation-delay: .40s; }
+.dashboard-grid .cell:nth-child(5) .dash-card { animation-delay: .50s; }
+.dashboard-grid .cell:nth-child(6) .dash-card { animation-delay: .60s; }
+.dash-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(23, 83, 145, .15); }
+.card-icon { transition: transform .4s ease; }
+.dash-card:hover .card-icon { transform: rotate(-10deg) scale(1.12); }
+
+/* ---------- 7. DISEÑO RESPONSIVO ---------- */
+/* Tablet (≤ 1023px): el menú se colapsa con el botón hamburguesa de Bulma */
+@media screen and (max-width: 1023px) {
+    .navbar.is-sj .navbar-menu { background: var(--sj-navy); padding: .5rem 1rem 1rem; box-shadow: 0 14px 20px rgba(0, 0, 0, .2); }
+    .navbar.is-sj .navbar-menu.is-active { animation: bajar .3s ease-out; }
+    .navbar.is-sj a.navbar-item { margin: 2px 0; }
+    .navbar.is-sj .nav-salir { margin-top: .5rem; text-align: center; }
+    .navbar.is-sj .navbar-brand.is-spread { justify-content: space-between; }
+}
+
+/* Móvil / tablet pequeña (≤ 768px) */
+@media screen and (max-width: 768px) {
+    .section { padding: 1rem .6rem; }
+    .page-box { padding: 1rem; border-radius: 16px; }
+    .title.page-title { font-size: 1.25rem; }
+    .filters { flex-direction: column; align-items: stretch; }
+    .filters .control,
+    .filters .select,
+    .filters .select select,
+    .filters .button { width: 100%; }
+    .status-card { flex-direction: column; align-items: stretch; text-align: center; }
+    .status-card .button { width: 100%; }
+    .button.is-fullwidth-mobile { width: 100%; }
+    .table-container table.table { min-width: 560px; }
+    table.table th, table.table td { padding: .5rem .6rem; font-size: .78rem; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: .6rem; }
+    .sidebar .menu-list { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; }
+    .sidebar .menu-list a { padding: .5rem .8rem; font-size: .72rem; }
+    .panel-main { padding: 1rem; }
+}
+
+/* Móvil pequeño (≤ 480px) */
+@media screen and (max-width: 480px) {
+    .navbar.is-sj .brand-title { font-size: .85rem; }
+    .navbar.is-sj .brand-logo { width: 34px; height: 34px; }
+    .info-grid { grid-template-columns: 1fr; }
+}
+
+/* Accesibilidad: sin animaciones si el usuario lo pide */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
         transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
     }
 }
-
-.session-info { color:#94a3b8; padding:8px 14px; font-size:12px; display:inline-block; }
-
