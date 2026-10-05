@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dashboard del Sistema de Gestión Académica - I.E.P San Jerónimo">
+    <title>I.E.P San Jerónimo - Dashboard</title>
+    <!-- Framework Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <!-- Tema San Jerónimo, animaciones, Flexbox, Grid y responsivo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Layout principal con Flexbox: cabecera arriba, (sidebar + contenido) debajo -->
+    <div class="page-container">
+
+        <nav class="navbar is-sj" role="navigation" aria-label="Cabecera">
+            <div class="navbar-brand is-spread">
+                <a class="navbar-item" href="index.html">
+                    <img class="brand-logo" src="logo.png" alt="Logo I.E.P. San Jerónimo">
+                    <strong class="brand-title">I.E.P SAN JERÓNIMO</strong>
+                </a>
+                <div class="navbar-item user-menu" onclick="alert('Funciones de menú de usuario')">
+                    <span>Juan Pérez - ADMIN</span>
+                    <div class="user-avatar">JP</div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Bulma columns = Flexbox (se apilan solas en móvil) -->
+        <div class="columns is-gapless layout-flex">
+            <aside class="column is-narrow">
+                <div class="menu sidebar">
+                    <ul class="menu-list">
+                            <li><a href="#" class="is-active"><span>&#128200;</span> Dashboard</a></li>
+                            <li><a href="#"><span>&#128203;</span> Mis Cursos</a></li>
+                            <li><a href="#"><span>&#128213;</span> Horario Académico</a></li>
+                            <li><a href="#"><span>&#128209;</span> Calificaciones</a></li>
+                            <li><a href="#"><span>&#128181;</span> Pagos y Pensiones</a></li>
+                            <li><a href="#"><span>&#128214;</span> Biblioteca Digital</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="column panel-main">
+                <h2 class="title is-4 page-title">Panel de Control Institucional</h2>
+
+                <!-- Bulma grid = CSS Grid: 3 columnas en escritorio, 2 en tablet, 1 en móvil -->
+                <div class="fixed-grid has-3-cols has-2-cols-tablet has-1-cols-mobile">
+                    <div class="grid dashboard-grid">
+
+                        <div class="cell">
+                            <article class="card dash-card">
+                                <header class="card-header">
+                                    <h3 class="card-header-title">Mis Cursos y Actas</h3>
+                                    <div class="card-icon"><span>&#128212;</span></div>
+                                </header>
+                                <section class="card-content">
+                                <p><strong>Curso:</strong> Matemática | Acta Abierta</p>
+                                <p><strong>Cód. Mat.:</strong> SEC-20261 | Bimestre I (2026)</p>
+                                <p><strong>Alumno:</strong> Gómez Carlos | Promed.: 15.0</p>
+                                </section>
+                                <footer class="card-footer">
+                                    <button class="button is-small is-link is-rounded" type="button" onclick="location.href='notas.html'">Registrar Notas</button>
+                                </footer>
+                            </article>
+                        </div>
+
+                        <div class="cell">
+                            <article class="card dash-card">
+                                <header class="card-header">
+                                    <h3 class="card-header-title">Anuncios y Comunicados</h3>
+                                    <div class="card-icon"><span>&#128101;</span></div>
+                                </header>
+                                <section class="card-content">
+                                <p><strong>Importante:</strong> Se ha programado la reunión de apoderados de 3.º Sec el día viernes.</p>
+                                <p><strong>Aviso:</strong> Vacantes disponibles: 8 / 25.</p>
+                                </section>
+                                <footer class="card-footer">
+                                    <button class="button is-small is-link is-rounded" type="button">Ver Detalles</button>
+                                </footer>
+                            </article>
+                        </div>
+
+                        <div class="cell">
+                            <article class="card dash-card">
+                                <header class="card-header">
+                                    <h3 class="card-header-title">Horario Académico</h3>
+                                    <div class="card-icon"><span>&#128336;</span></div>
+                                </header>
+                                <section class="card-content">
+                                <p><strong>Matemática:</strong> Lunes 8:00 AM</p>
+                                <p><strong>Comunicación:</strong> Martes 10:00 AM</p>
+                                <p><strong>Ciencia:</strong> Jueves 11:30 AM</p>
+                                </section>
+                                <footer class="card-footer">
+                                    <button class="button is-small is-link is-rounded" type="button">Ver Horario Completo</button>
+                                </footer>
+                            </article>
+                        </div>
+
+                        <div class="cell">
+                            <article class="card dash-card">
+                                <header class="card-header">
+                                    <h3 class="card-header-title">Admisión y Postulantes</h3>
+                                    <div class="card-icon"><span>&#128100;</span></div>
+                                </header>
+                                <section class="card-content">
+                                <p><strong>Postulante:</strong> Carlos Mendoza (1° Sec.) - Estado: PENDIENTE</p>
+                                <p><strong>Traslado:</strong> Ana Gómez (3° Sec.) - Estado: EN_EVALUACION</p>
+                                </section>
+                                <footer class="card-footer">
+                                    <button class="button is-small is-link is-rounded" type="button" onclick="location.href='admision.html'">Gestionar Postulantes</button>
+                                </footer>
+                            </article>
+                        </div>
+
+                        <div class="cell">
+                            <article class="card dash-card">
+                                <header class="card-header">
+                                    <h3 class="card-header-title">Módulo Financiero</h3>
+                                    <div class="card-icon"><span>&#128181;</span></div>
+                                </header>
+                                <section class="card-content">
+                                <p><strong>Alumno:</strong> Pérez Gómez Juan | Solvente: ✓</p>
+                                <p><strong>Pensión Mayo:</strong> Vencido (S/ 0.00)</p>
+                                </section>
+                                <footer class="card-footer">
+                                    <button class="button is-small is-link is-rounded" type="button" onclick="location.href='libreta.html'">Consultar Libreta</button>
+                                </footer>
+                            </article>
+                        </div>
+
+                        <div class="cell">
+                            <article class="card dash-card">
+                                <header class="card-header">
+                                    <h3 class="card-header-title">Nuevos Postulantes</h3>
+                                    <div class="card-icon"><span>&#128221;</span></div>
+                                </header>
+                                <section class="card-content">
+                                <p><strong>Registrar:</strong> Nuevo examen de admisión programado para el 20/01/2026.</p>
+                                <p><strong>Traslado:</strong> Validado: Apoderado Sin Deudas.</p>
+                                </section>
+                                <footer class="card-footer">
+                                    <button class="button is-small is-link is-rounded" type="button">Añadir Nuevo</button>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
