@@ -112,9 +112,11 @@
         .btn-main:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(29,78,216,0.3); }
         .hint { font-size: 11px; color: #64748b; margin-top: 10px; text-align: center; }
     </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar">
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span>☰</span></button>
         <div class="brand">
             <img src="logo.png" alt="Logo I.E.P San Jerónimo">
             <div class="brand-title">I.E.P. SAN JERÓNIMO<small>Nivel Secundaria · 1° a 5° año</small></div>
@@ -248,7 +250,18 @@
 
     <script src="auth.js"></script>
     <script>
-        // --- Dropdown de módulos ---
+        // --- Menú móvil ---
+    document.querySelectorAll('.nav-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const nav = document.querySelector('.navbar .nav-links');
+            if (!nav) return;
+            const abierto = nav.classList.toggle('mobile-open');
+            btn.setAttribute('aria-expanded', String(abierto));
+            btn.querySelector('span').textContent = abierto ? '×' : '☰';
+        });
+    });
+
+    // --- Dropdown de módulos ---
         document.querySelectorAll('[data-dropdown]').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
