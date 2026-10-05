@@ -22,7 +22,7 @@ const NOMBRES_PAGINA = {
 function obtenerSesion() {
     try {
         const data = localStorage.getItem('usuarioActivo');
-        return data ? JSON.parse(data) : null;
+        const data = sessionStorage.getItem('usuarioActivo');
     } catch (e) {
         return null;
     }
@@ -35,12 +35,12 @@ function iniciarSesion(rol, codigo) {
         codigo: (codigo || 'invitado').trim(),
         fecha: new Date().toISOString()
     };
-    localStorage.setItem('usuarioActivo', JSON.stringify(sesion));
+    sessionStorage.setItem('usuarioActivo', JSON.stringify(sesion));
     return sesion;
 }
 
 function cerrarSesion() {
-    localStorage.removeItem('usuarioActivo');
+    sessionStorage.removeItem('usuarioActivo');
     window.location.href = 'index.html';
 }
 
