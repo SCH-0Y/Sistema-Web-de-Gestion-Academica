@@ -21,8 +21,8 @@ const NOMBRES_PAGINA = {
 
 function obtenerSesion() {
     try {
-        const data = localStorage.getItem('usuarioActivo');
         const data = sessionStorage.getItem('usuarioActivo');
+        return data ? JSON.parse(data) : null;
     } catch (e) {
         return null;
     }
