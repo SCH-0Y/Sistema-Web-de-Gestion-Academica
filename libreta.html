@@ -26,9 +26,11 @@
         .btn-main:hover { background: #1e40af; }
         .bloqueo { background: #fef2f2; border: 1px dashed #fca5a5; color: #991b1b; padding: 18px; border-radius: 8px; font-size: 13px; text-align: center; font-weight: 600; }
     </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar">
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span>☰</span></button>
         <div style="display:flex; align-items:center; gap:10px;">
             <div class="brand-logo">SJ</div>
             <strong>I.E.P. SAN JERÓNIMO</strong>
@@ -45,13 +47,13 @@
 
         <h3>Libreta de Notas y Asistencia (RF-5.1 / RF-5.2)</h3>
         <div id="bloque-libreta">
-            <table>
+            <div class="table-responsive"><table>
                 <thead><tr><th>Curso</th><th>Bimestre I</th><th>Asistencia</th></tr></thead>
                 <tbody>
                     <tr><td>Matemática</td><td>16.5</td><td>96%</td></tr>
                     <tr><td>Comunicación</td><td>14.0</td><td>91%</td></tr>
                 </tbody>
-            </table>
+            </table></div>
             <br>
             <button class="btn-main" onclick="alert('Descargando libreta en PDF (RF-5.3)')">Descargar PDF</button>
         </div>
@@ -60,7 +62,7 @@
         </div>
 
         <h3>Cronograma de Pago de Pensiones</h3>
-        <table>
+        <div class="table-responsive"><table>
             <thead>
                 <tr><th>Concepto</th><th>Monto Base</th><th>Vencimiento</th><th>Monto Pagado</th><th>Estado</th></tr>
             </thead>
@@ -69,7 +71,7 @@
                 <tr><td>Pensión Marzo</td><td>S/ 380.00</td><td>31/03/2026</td><td>S/ 380.00</td><td style="color:#166534; font-weight:bold;">PAGADO</td></tr>
                 <tr id="fila-pendiente" style="display:none;"><td>Pensión Abril + Mayo</td><td>S/ 760.00</td><td>31/05/2026</td><td>S/ 0.00</td><td style="color:#991b1b; font-weight:bold;">PENDIENTE</td></tr>
             </tbody>
-        </table>
+        </table></div>
     </div>
 
     <script src="auth.js"></script>
@@ -97,6 +99,13 @@
             filaPendiente.style.display = moroso ? 'table-row' : 'none';
             this.textContent = moroso ? 'Simular pago al día' : 'Simular atraso ≥ 2 meses (RN-04)';
         });
-    </script>
+    
+    const btnDescargar = document.getElementById('btn-descargar');
+    if (btnDescargar) {
+        btnDescargar.addEventListener('click', function () {
+            window.print();
+        });
+    }
+</script>
 </body>
 </html>
